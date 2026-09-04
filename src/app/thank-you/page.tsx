@@ -53,6 +53,9 @@ function ThankYouContent() {
   const meetUrl =
     process.env.NEXT_PUBLIC_WEBINAR_MEET_URL ||
     "https://meet.google.com/abc-defg-hij";
+  const whatsappUrl =
+    process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL ||
+    "https://chat.whatsapp.com/invite";
 
   const event: CalendarEvent = {
     title: webinarTitle,
@@ -201,28 +204,34 @@ function ThankYouContent() {
         {/* ==================================================== */}
         {/* STEP 02: JOIN VIP WHATSAPP COMMUNITY                */}
         {/* ==================================================== */}
-        <div className="bg-[#120e03] border-2 border-[#f5c542]/40 rounded-3xl p-6 sm:p-8 shadow-[0_0_35px_rgba(245,197,66,0.12)] mb-8">
-          <div className="flex items-center gap-3 mb-3">
+        <div className="bg-[#120e03] border-2 border-[#ffd700]/60 rounded-3xl p-6 sm:p-8 shadow-[0_0_40px_rgba(255,215,0,0.15)] mb-8 relative overflow-hidden">
+          <div className="flex flex-wrap items-center gap-3 mb-3">
             <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[#ffd700] to-[#f5c542] text-[#0a0a0a] text-xs font-black uppercase tracking-wider shadow-[0_0_15px_rgba(255,215,0,0.4)]">
-              STEP 02
+              STEP 02 (MANDATORY)
             </span>
-            <h2 className="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2">
-              <MessageCircle className="w-5 h-5 text-[#ffd700]" />
-              <span>Join the VIP Attendees WhatsApp Community</span>
-            </h2>
+            <span className="inline-flex items-center gap-1.5 text-xs text-[#ffd700] font-mono font-bold bg-[#ffd700]/10 border border-[#ffd700]/30 px-3 py-0.5 rounded-full">
+              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping inline-block" />
+              <span>480+ Attendees Joined</span>
+            </span>
           </div>
-          <p className="text-xs sm:text-sm text-[#d4c7a5] mb-5">
-            Receive 15-minute live join reminders, the official slide deck, 25+ AI prompt sheets, and connect with fellow attendees.
+
+          <h2 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2 tracking-tight">
+            <MessageCircle className="w-6 h-6 text-[#ffd700] flex-shrink-0" />
+            <span>Join the Official VIP WhatsApp Community</span>
+          </h2>
+
+          <p className="text-xs sm:text-sm text-[#d4c7a5] mt-2 mb-6 leading-relaxed">
+            <strong className="text-white">Crucial Step:</strong> We drop the direct Google Meet join links, live Q&amp;A backup streams, the 25+ AI power prompt sheets, and session presentation slides inside this private WhatsApp group 15 minutes before we go live.
           </p>
 
           <a
-            href="https://chat.whatsapp.com/sample-aiway-vip"
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#1c1605] border-2 border-[#ffd700] text-[#ffd700] hover:bg-[#ffd700] hover:text-[#0a0a0a] text-sm font-bold transition-all shadow-[0_0_25px_rgba(245,197,66,0.25)] hover:shadow-[0_0_35px_rgba(255,215,0,0.5)] active:scale-95 uppercase tracking-wide"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#f5c542] via-[#ffd700] to-[#e6b800] text-[#0a0a0a] text-sm sm:text-base font-black hover:brightness-110 transition-all shadow-[0_0_30px_rgba(245,197,66,0.45)] hover:shadow-[0_0_50px_rgba(255,215,0,0.7)] active:scale-95 uppercase tracking-wider cursor-pointer"
           >
-            <MessageCircle className="w-4 h-4" />
-            <span>Join Official VIP WhatsApp Group →</span>
+            <MessageCircle className="w-5 h-5 stroke-[2.5]" />
+            <span>Join VIP WhatsApp Community (Instant Access) →</span>
           </a>
         </div>
 
