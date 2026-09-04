@@ -12,14 +12,13 @@ import WhoShouldJoin from "@/components/WhoShouldJoin";
 import MentorSection from "@/components/MentorSection";
 import ReviewsAndFAQ from "@/components/ReviewsAndFAQ";
 import CheckoutModal from "@/components/CheckoutModal";
-import StickyCTA from "@/components/StickyCTA";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function Home() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#faff69] selection:text-black pb-28 sm:pb-32">
+    <main className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#faff69] selection:text-black">
       {/* Sticky Top Bar: Countdown Timer on Left, Join Now 99 on Right */}
       <TopStickyNavbar onOpenCheckout={() => setIsCheckoutOpen(true)} />
 
@@ -114,9 +113,6 @@ export default function Home() {
           Secured by Razorpay 256-Bit SSL • Automated Delivery via Resend & Google Meet
         </p>
       </footer>
-
-      {/* Sticky Bottom Bar Pinned Everywhere Across Scrolling */}
-      <StickyCTA onOpenCheckout={() => setIsCheckoutOpen(true)} />
     </main>
   );
 }
