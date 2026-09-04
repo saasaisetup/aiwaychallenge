@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   try {
     const body = await req.json().catch(() => ({}));
-    const amount = body.amount ? Number(body.amount) : 99;
+    const amount = body.amount ? Number(body.amount) : 1;
     const planTitle = body.planTitle || body.planName || "10x Career AI Masterclass";
     const name = body.name || body.attendeeName || "Valued Attendee";
     const email = body.email || body.attendeeEmail || "";
