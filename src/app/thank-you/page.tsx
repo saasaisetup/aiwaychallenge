@@ -110,330 +110,319 @@ function ThankYouContent() {
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-[#f5c542]/10 blur-[160px] pointer-events-none rounded-full" />
 
       <div className="max-w-4xl mx-auto relative z-10">
-        {/* ---------------------------------------------------- */}
-        {/* 1. SUCCESS CONFIRMATION CARD (Luxury Golden Theme) */}
-        {/* ---------------------------------------------------- */}
-        <div className="bg-gradient-to-b from-[#1a1505] via-[#120e03] to-[#0d0a02] border-2 border-[#f5c542]/50 rounded-3xl p-6 sm:p-10 shadow-[0_0_50px_rgba(245,197,66,0.18)] relative overflow-hidden mb-10">
-          <div className="text-center max-w-2xl mx-auto">
-            {/* Gold Checkmark Badge */}
-            <div className="h-16 w-16 bg-[#ffd700]/15 border-2 border-[#ffd700]/50 text-[#ffd700] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_0_25px_rgba(255,215,0,0.3)]">
-              <CheckCircle2 className="w-10 h-10 stroke-[2.5]" />
-            </div>
-
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#ffd700] bg-[#ffd700]/15 border border-[#ffd700]/40 px-3.5 py-1 rounded-full">
-              Registration Confirmed
-            </span>
-
-            <h1 className="text-2xl sm:text-4xl font-extrabold text-white mt-4 font-mono tracking-tight">
-              You're In, <span className="text-[#ffd700]">{name}</span>! 🚀
-            </h1>
-            <p className="text-[#e2d5b4] text-sm sm:text-base mt-2">
-              We have dispatched your live ticket, Google Meet access, and calendar invite to:{" "}
-              <strong className="text-[#ffd700] underline decoration-[#ffd700]/50">{email}</strong>
-            </p>
+        {/* ==================================================== */}
+        {/* CELEBRATION HEADER BANNER                           */}
+        {/* ==================================================== */}
+        <div className="bg-gradient-to-b from-[#1c1605] via-[#120e03] to-[#0a0802] border-2 border-[#ffd700]/50 rounded-3xl p-6 sm:p-10 shadow-[0_0_60px_rgba(255,215,0,0.2)] text-center relative overflow-hidden mb-10">
+          <div className="h-16 w-16 bg-[#ffd700]/15 border-2 border-[#ffd700]/60 text-[#ffd700] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_0_30px_rgba(255,215,0,0.35)]">
+            <CheckCircle2 className="w-10 h-10 stroke-[2.5]" />
           </div>
 
-          {/* Email Notification & Resend Button */}
-          <div className="mt-6 p-4 rounded-xl bg-[#141003] border border-[#f5c542]/30 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <span className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-widest text-[#ffd700] bg-[#ffd700]/15 border border-[#ffd700]/40 px-3.5 py-1 rounded-full">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>PAYMENT VERIFIED • SEAT CONFIRMED</span>
+          </span>
+
+          <h1 className="text-2xl sm:text-4xl font-black text-white mt-4 font-mono tracking-tight">
+            Welcome to AIWAY Challenge, <span className="text-[#ffd700]">{name}</span>! 🎉
+          </h1>
+          <p className="text-[#e2d5b4] text-sm sm:text-base mt-2 max-w-xl mx-auto">
+            You are officially registered for the 10x AI Masterclass. Complete the{" "}
+            <strong className="text-[#ffd700]">4 simple steps below</strong> to lock in your access.
+          </p>
+
+          {/* Attendee Info Badges */}
+          <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-2 sm:gap-4 p-3 rounded-2xl bg-[#141003] border border-[#f5c542]/30 text-xs font-mono">
+            <span className="text-[#b8a984]">
+              Email: <strong className="text-[#ffd700]">{email}</strong>
+            </span>
+            <span className="hidden sm:inline text-[#f5c542]/40">•</span>
+            <span className="text-[#b8a984]">
+              Payment ID: <strong className="text-[#ffd700]">{paymentId}</strong>
+            </span>
+            <span className="hidden sm:inline text-[#f5c542]/40">•</span>
+            <span className="text-[#b8a984]">
+              Live Date: <strong className="text-white">Sunday, 6th Sept • 11:00 AM IST</strong>
+            </span>
+          </div>
+        </div>
+
+        {/* ==================================================== */}
+        {/* STEP 01: ADD TO CALENDAR & DIRECT MEET ACCESS       */}
+        {/* ==================================================== */}
+        <div className="bg-[#120e03] border-2 border-[#f5c542]/40 rounded-3xl p-6 sm:p-8 shadow-[0_0_35px_rgba(245,197,66,0.12)] mb-8">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[#ffd700] to-[#f5c542] text-[#0a0a0a] text-xs font-black uppercase tracking-wider shadow-[0_0_15px_rgba(255,215,0,0.4)]">
+              STEP 01
+            </span>
+            <h2 className="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2">
+              <Calendar className="w-5 h-5 text-[#ffd700]" />
+              <span>Lock The Masterclass On Your Calendar</span>
+            </h2>
+          </div>
+          <p className="text-xs sm:text-sm text-[#d4c7a5] mb-5">
+            The session is live and will not have public recordings. Click below to add the Google Calendar invite or access the room link directly so you don't miss the 11:00 AM start.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+            {/* Primary Gold: Add to Google Calendar */}
+            <a
+              href={googleCalendarUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-3.5 rounded-xl bg-gradient-to-r from-[#f5c542] via-[#ffd700] to-[#e6b800] text-[#0a0a0a] text-xs sm:text-sm font-black flex items-center justify-center gap-2 transition-all shadow-[0_0_25px_rgba(245,197,66,0.4)] hover:shadow-[0_0_40px_rgba(245,197,66,0.7)] hover:brightness-105 active:scale-95 uppercase tracking-wide"
+            >
+              <Calendar className="w-4 h-4 stroke-[2.5]" />
+              <span>Add to Google Calendar</span>
+            </a>
+
+            {/* Direct Google Meet Link */}
+            <a
+              href={meetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-3.5 rounded-xl bg-[#1a1405] hover:bg-[#ffd700] text-[#ffd700] hover:text-[#0a0a0a] text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all border-2 border-[#ffd700] shadow-[0_0_20px_rgba(245,197,66,0.2)] active:scale-95"
+            >
+              <Video className="w-4 h-4" />
+              <span>Direct Google Meet Link</span>
+            </a>
+
+            {/* Apple / Outlook .ics File */}
+            <button
+              onClick={downloadICS}
+              className="px-5 py-3.5 rounded-xl bg-[#141003] hover:bg-[#221b06] text-[#e2d5b4] hover:text-white text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all border border-[#f5c542]/40 cursor-pointer active:scale-95"
+            >
+              <Download className="w-4 h-4 text-[#ffd700]" />
+              <span>Download .ics File</span>
+            </button>
+          </div>
+        </div>
+
+        {/* ==================================================== */}
+        {/* STEP 02: JOIN VIP WHATSAPP COMMUNITY                */}
+        {/* ==================================================== */}
+        <div className="bg-[#120e03] border-2 border-[#f5c542]/40 rounded-3xl p-6 sm:p-8 shadow-[0_0_35px_rgba(245,197,66,0.12)] mb-8">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[#ffd700] to-[#f5c542] text-[#0a0a0a] text-xs font-black uppercase tracking-wider shadow-[0_0_15px_rgba(255,215,0,0.4)]">
+              STEP 02
+            </span>
+            <h2 className="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2">
+              <MessageCircle className="w-5 h-5 text-[#ffd700]" />
+              <span>Join the VIP Attendees WhatsApp Community</span>
+            </h2>
+          </div>
+          <p className="text-xs sm:text-sm text-[#d4c7a5] mb-5">
+            Receive 15-minute live join reminders, the official slide deck, 25+ AI prompt sheets, and connect with fellow attendees.
+          </p>
+
+          <a
+            href="https://chat.whatsapp.com/sample-aiway-vip"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#1c1605] border-2 border-[#ffd700] text-[#ffd700] hover:bg-[#ffd700] hover:text-[#0a0a0a] text-sm font-bold transition-all shadow-[0_0_25px_rgba(245,197,66,0.25)] hover:shadow-[0_0_35px_rgba(255,215,0,0.5)] active:scale-95 uppercase tracking-wide"
+          >
+            <MessageCircle className="w-4 h-4" />
+            <span>Join Official VIP WhatsApp Group →</span>
+          </a>
+        </div>
+
+        {/* ==================================================== */}
+        {/* STEP 03: EMAIL TICKET VERIFICATION & RESEND         */}
+        {/* ==================================================== */}
+        <div className="bg-[#120e03] border-2 border-[#f5c542]/40 rounded-3xl p-6 sm:p-8 shadow-[0_0_35px_rgba(245,197,66,0.12)] mb-8">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[#ffd700] to-[#f5c542] text-[#0a0a0a] text-xs font-black uppercase tracking-wider shadow-[0_0_15px_rgba(255,215,0,0.4)]">
+              STEP 03
+            </span>
+            <h2 className="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2">
+              <Mail className="w-5 h-5 text-[#ffd700]" />
+              <span>Verify Your Ticket Receipt In Email</span>
+            </h2>
+          </div>
+          <p className="text-xs sm:text-sm text-[#d4c7a5] mb-4">
+            We have automatically triggered your ticket and calendar link to:{" "}
+            <strong className="text-[#ffd700] underline decoration-[#ffd700]/50 font-mono">{email}</strong>
+          </p>
+
+          <div className="p-4 rounded-2xl bg-[#181305] border border-[#f5c542]/30 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
             <div className="flex items-center gap-2 text-[#e2d5b4]">
               <Mail className="w-4 h-4 text-[#ffd700] flex-shrink-0" />
               <span>
-                <strong>Email Delivery Note:</strong> Check your <strong>Spam</strong> or <strong>Promotions</strong> folder if the ticket doesn't appear in your Primary inbox.
+                <strong>Important:</strong> If not in Primary, please check your <strong>Spam</strong> or <strong>Promotions</strong> folder and mark as 'Important'.
               </span>
             </div>
             <button
               onClick={handleResendEmail}
               disabled={resendingEmail}
-              className="flex-shrink-0 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#ffd700]/15 hover:bg-[#ffd700]/25 text-[#ffd700] border border-[#ffd700]/40 font-bold transition-all cursor-pointer text-xs"
+              className="flex-shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#ffd700]/15 hover:bg-[#ffd700]/25 text-[#ffd700] border border-[#ffd700]/40 font-bold transition-all cursor-pointer text-xs"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${resendingEmail ? "animate-spin" : ""}`} />
-              <span>{resendingEmail ? "Sending..." : "Resend Email"}</span>
+              <span>{resendingEmail ? "Sending..." : "Resend Email Ticket"}</span>
             </button>
           </div>
           {emailStatus && (
-            <p className="mt-2 text-xs font-semibold text-[#ffd700] text-center animate-fade-in">
+            <p className="mt-3 text-xs font-semibold text-[#ffd700] text-center">
               {emailStatus}
             </p>
           )}
-
-          {/* Action Boxes: Calendar, Meet, and ICS */}
-          <div className="mt-7 p-6 bg-[#161205] border border-[#f5c542]/30 rounded-2xl">
-            <h3 className="text-sm sm:text-base font-bold text-white mb-4 flex items-center gap-2 font-mono">
-              <Calendar className="w-4 h-4 text-[#ffd700]" />
-              <span>Step 1: Never Miss The Session (Add to Calendar)</span>
-            </h3>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {/* Primary Gold: Add to Google Calendar */}
-              <a
-                href={googleCalendarUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-3.5 rounded-xl bg-gradient-to-r from-[#f5c542] via-[#ffd700] to-[#e6b800] text-[#0a0a0a] text-xs sm:text-sm font-black flex items-center justify-center gap-2 transition-all shadow-[0_0_30px_rgba(245,197,66,0.4)] hover:shadow-[0_0_45px_rgba(245,197,66,0.7)] hover:brightness-105 active:scale-95"
-              >
-                <Calendar className="w-4 h-4 stroke-[2.5]" />
-                <span>Add to Calendar (1-Click)</span>
-              </a>
-
-              {/* Direct Meet Link */}
-              <a
-                href={meetUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-3.5 rounded-xl bg-[#1f1906] hover:bg-[#ffd700] text-[#ffd700] hover:text-[#0a0a0a] text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all border-2 border-[#ffd700] shadow-[0_0_20px_rgba(245,197,66,0.2)] active:scale-95"
-              >
-                <Video className="w-4 h-4" />
-                <span>Direct Google Meet Link</span>
-              </a>
-
-              {/* Download Apple / Outlook (.ics) */}
-              <button
-                onClick={downloadICS}
-                className="px-5 py-3.5 rounded-xl bg-[#141003] hover:bg-[#221b06] text-[#e2d5b4] hover:text-white text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all border border-[#f5c542]/40 cursor-pointer"
-              >
-                <Download className="w-4 h-4 text-[#ffd700]" />
-                <span>Download .ics File</span>
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#b8a984] gap-2 border-t border-[#2a2107] pt-4 font-mono">
-            <span>Payment ID: <code className="text-[#ffd700] font-bold">{paymentId}</code></span>
-            <span>Date &amp; Time: Sunday, 6th Sept • 11:00 AM IST</span>
-          </div>
         </div>
 
-        {/* ---------------------------------------------------- */}
-        {/* 2. COURSE UPGRADE 1: ₹1,999 4-Week AI Mastery Cohort */}
-        {/* ---------------------------------------------------- */}
-        <div className="relative rounded-3xl bg-gradient-to-b from-[#1e1705] via-[#120e03] to-[#0a0802] border-2 border-[#f5c542]/60 p-6 sm:p-10 shadow-[0_0_60px_rgba(245,197,66,0.2)] overflow-hidden mb-10">
-          <div className="absolute top-0 right-0 bg-gradient-to-l from-[#ffd700] to-[#f5c542] text-[#0a0a0a] text-[11px] font-black uppercase tracking-wider py-1.5 px-6 rounded-bl-2xl shadow-lg">
-            ⚡ Special One-Time Offer • Save 80%
-          </div>
-
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#ffd700]/15 border border-[#ffd700]/40 text-[#ffd700] mb-4">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>COHORT UPGRADE EXPERIENCE</span>
-            </div>
-
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight font-serif">
-              Want 1:1 Mentorship &amp; Deep-Dive Mastery? Upgrade to the{" "}
-              <span className="text-[#ffd700] underline decoration-[#ffd700]/40">
-                4-Week AI Mastery Cohort (₹1,999)
-              </span>
+        {/* ==================================================== */}
+        {/* STEP 04: EXCLUSIVE FAST-TRACK CAREER UPGRADES       */}
+        {/* ==================================================== */}
+        <div className="bg-[#120e03] border-2 border-[#ffd700]/60 rounded-3xl p-6 sm:p-8 shadow-[0_0_50px_rgba(255,215,0,0.18)] mb-12">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[#ffd700] to-[#f5c542] text-[#0a0a0a] text-xs font-black uppercase tracking-wider shadow-[0_0_15px_rgba(255,215,0,0.4)]">
+              STEP 04
+            </span>
+            <h2 className="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2">
+              <Crown className="w-5 h-5 text-[#ffd700]" />
+              <span>Exclusive Attendee Career Upgrades (Save 80% Today)</span>
             </h2>
-
-            <p className="text-[#d8cca8] text-sm sm:text-base mt-3 leading-relaxed">
-              While the ₹99 masterclass gives you the high-level roadmap, the
-              <strong className="text-[#ffd700]"> 4-Week AI Mastery Cohort</strong> gives you personalized 1:1 project
-              reviews, custom resume overhaul, and private weekly masterminds with Ankit Singh.
-            </p>
-
-            {/* Value Stack in Golden Glass */}
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="p-3.5 rounded-xl bg-[#141003]/90 border border-[#f5c542]/30 flex items-start gap-3">
-                <div className="p-1 rounded bg-[#ffd700]/20 text-[#ffd700] mt-0.5">
-                  <Star className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-white">
-                    1:1 AI Resume &amp; Portfolio Audit
-                  </h4>
-                  <p className="text-[11px] text-[#b8a984]">
-                    Personalized feedback to get shortlisted for high-paying remote roles.
-                  </p>
-                </div>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-[#141003]/90 border border-[#f5c542]/30 flex items-start gap-3">
-                <div className="p-1 rounded bg-[#ffd700]/20 text-[#ffd700] mt-0.5">
-                  <Zap className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-white">
-                    4 Live Weekly Build Sessions
-                  </h4>
-                  <p className="text-[11px] text-[#b8a984]">
-                    Build 4 full-stack AI applications and autonomous agents together.
-                  </p>
-                </div>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-[#141003]/90 border border-[#f5c542]/30 flex items-start gap-3">
-                <div className="p-1 rounded bg-[#ffd700]/20 text-[#ffd700] mt-0.5">
-                  <Mail className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-white">
-                    Private VIP Community Access
-                  </h4>
-                  <p className="text-[11px] text-[#b8a984]">
-                    Direct access to ask questions anytime and network with high performers.
-                  </p>
-                </div>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-[#141003]/90 border border-[#f5c542]/30 flex items-start gap-3">
-                <div className="p-1 rounded bg-[#ffd700]/20 text-[#ffd700] mt-0.5">
-                  <Shield className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-white">
-                    Full AI Source Code Vault
-                  </h4>
-                  <p className="text-[11px] text-[#b8a984]">
-                    GitHub repos and automation workflows ready to deploy commercially.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Pricing & CTA */}
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 p-4.5 bg-[#141003] border-2 border-[#f5c542]/40 rounded-2xl">
-              <div>
-                <p className="text-xs text-[#b8a984]">Regular Cohort Fee: <span className="line-through">₹9,999</span></p>
-                <p className="text-2xl font-black text-white font-mono flex items-baseline gap-2">
-                  <span className="text-[#ffd700]">₹1,999</span>
-                  <span className="text-xs text-[#0a0a0a] font-bold bg-[#ffd700] px-2.5 py-0.5 rounded-full">
-                    Save 80% (Today Only)
-                  </span>
-                </p>
-              </div>
-
-              <button
-                onClick={() =>
-                  setUpsellModal({
-                    isOpen: true,
-                    price: 1999,
-                    title: "4-Week AI Mastery Cohort & 1:1 Implementation Mentorship",
-                  })
-                }
-                className="w-full sm:w-auto px-8 py-4 rounded-xl text-sm font-black text-[#0a0a0a] bg-gradient-to-r from-[#f5c542] via-[#ffd700] to-[#e6b800] hover:brightness-110 transition-all shadow-[0_0_35px_rgba(245,197,66,0.4)] flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider active:scale-95"
-              >
-                <span>Upgrade to 4-Week Cohort for ₹1,999</span>
-                <ArrowRight className="w-4 h-4 stroke-[3]" />
-              </button>
-            </div>
           </div>
-        </div>
+          <p className="text-xs sm:text-sm text-[#d4c7a5] mb-6">
+            You've secured your ₹99 masterclass foundation. Choose from our two advanced implementation tracks to fast-track your 10x career:
+          </p>
 
-        {/* ---------------------------------------------------- */}
-        {/* 3. COURSE UPGRADE 2: ₹4,999 Elite Advanced Agents Mastermind */}
-        {/* ---------------------------------------------------- */}
-        <div className="relative rounded-3xl bg-gradient-to-b from-[#261d05] via-[#140f03] to-[#0a0802] border-2 border-[#ffd700]/70 p-6 sm:p-10 shadow-[0_0_70px_rgba(255,215,0,0.25)] overflow-hidden mb-12">
-          <div className="absolute top-0 right-0 bg-gradient-to-l from-[#ffd700] via-[#f5c542] to-[#d4af37] text-[#0a0a0a] text-[11px] font-black uppercase tracking-wider py-1.5 px-6 rounded-bl-2xl shadow-lg flex items-center gap-1.5">
-            <Crown className="w-3.5 h-3.5" />
-            <span>ELITE ADVANCED COURSE</span>
-          </div>
+          {/* DUAL GOLDEN COURSE UPGRADE CARDS */}
+          <div className="space-y-6">
+            {/* UPGRADE 1: ₹1,999 4-Week AI Mastery Cohort */}
+            <div className="relative rounded-2xl bg-gradient-to-b from-[#1b1505] via-[#140f03] to-[#0d0a02] border-2 border-[#f5c542]/60 p-6 sm:p-7 shadow-lg overflow-hidden">
+              <div className="absolute top-0 right-0 bg-gradient-to-l from-[#ffd700] to-[#f5c542] text-[#0a0a0a] text-[10px] font-black uppercase tracking-wider py-1 px-4 rounded-bl-xl shadow-md">
+                80% OFF • 1:1 MENTORSHIP
+              </div>
 
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#ffd700]/20 border border-[#ffd700]/50 text-[#ffd700] mb-4">
-              <Crown className="w-3.5 h-3.5" />
-              <span>THE TOP 1% ADVANCED AI ENGINEER TRACK</span>
-            </div>
+              <div className="flex items-center gap-2 text-xs font-bold text-[#ffd700] mb-2 font-mono">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>OPTION 4A: 4-WEEK COHORT</span>
+              </div>
 
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight font-serif">
-              Become an AI Architect: Enroll in the{" "}
-              <span className="text-[#ffd700] underline decoration-[#ffd700]/50">
-                Autonomous Agents &amp; Multi-Agent Swarms Mastermind (₹4,999)
-              </span>
-            </h2>
+              <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight">
+                4-Week AI Mastery Cohort &amp; 1:1 Implementation Mentorship
+              </h3>
+              <p className="text-xs sm:text-sm text-[#d8cca8] mt-2">
+                Personalized 1:1 project feedback, resume overhaul, weekly live build sessions, and private mastermind community with Ankit Singh.
+              </p>
 
-            <p className="text-[#d8cca8] text-sm sm:text-base mt-3 leading-relaxed">
-              Designed for serious developers, founders, and tech professionals. Master enterprise-grade AI agent systems, autonomous swarms with LangGraph, custom fine-tuned LLMs, and multi-tenant RAG systems.
-            </p>
-
-            {/* Advanced Value Stack */}
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="p-3.5 rounded-xl bg-[#161205]/95 border border-[#ffd700]/30 flex items-start gap-3">
-                <div className="p-1 rounded bg-[#ffd700]/25 text-[#ffd700] mt-0.5">
-                  <Zap className="w-4 h-4" />
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div className="flex items-center gap-2 text-xs text-[#e2d5b4]">
+                  <Check className="w-3.5 h-3.5 text-[#ffd700] flex-shrink-0" />
+                  <span>1:1 AI Resume &amp; Portfolio Audit</span>
                 </div>
-                <div>
-                  <h4 className="text-xs font-bold text-white">
-                    Multi-Agent Swarm Architectures
-                  </h4>
-                  <p className="text-[11px] text-[#b8a984]">
-                    Orchestrate autonomous agent systems with LangGraph, AutoGen &amp; CrewAI.
-                  </p>
+                <div className="flex items-center gap-2 text-xs text-[#e2d5b4]">
+                  <Check className="w-3.5 h-3.5 text-[#ffd700] flex-shrink-0" />
+                  <span>4 Live Weekly Project Build Sessions</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-[#e2d5b4]">
+                  <Check className="w-3.5 h-3.5 text-[#ffd700] flex-shrink-0" />
+                  <span>Private VIP Founder Community Access</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-[#e2d5b4]">
+                  <Check className="w-3.5 h-3.5 text-[#ffd700] flex-shrink-0" />
+                  <span>Production AI Codebase &amp; Prompt Vault</span>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-[#161205]/95 border border-[#ffd700]/30 flex items-start gap-3">
-                <div className="p-1 rounded bg-[#ffd700]/25 text-[#ffd700] mt-0.5">
-                  <Star className="w-4 h-4" />
-                </div>
+              <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#2a2107]">
                 <div>
-                  <h4 className="text-xs font-bold text-white">
-                    2 Private 1-on-1 Code Audits
-                  </h4>
                   <p className="text-[11px] text-[#b8a984]">
-                    Dedicated 60-minute architecture review &amp; code teardowns directly with Ankit Singh.
+                    Regular Fee: <span className="line-through">₹9,999</span>
+                  </p>
+                  <p className="text-2xl font-black text-white font-mono flex items-baseline gap-2">
+                    <span className="text-[#ffd700]">₹1,999</span>
+                    <span className="text-[10px] text-[#0a0a0a] font-bold bg-[#ffd700] px-2 py-0.5 rounded-full">
+                      SAVE 80%
+                    </span>
                   </p>
                 </div>
-              </div>
 
-              <div className="p-3.5 rounded-xl bg-[#161205]/95 border border-[#ffd700]/30 flex items-start gap-3">
-                <div className="p-1 rounded bg-[#ffd700]/25 text-[#ffd700] mt-0.5">
-                  <Shield className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-white">
-                    High-Scale Vector RAG &amp; Fine-Tuning
-                  </h4>
-                  <p className="text-[11px] text-[#b8a984]">
-                    Build production RAG pipelines with hybrid search, re-ranking &amp; domain adapters.
-                  </p>
-                </div>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-[#161205]/95 border border-[#ffd700]/30 flex items-start gap-3">
-                <div className="p-1 rounded bg-[#ffd700]/25 text-[#ffd700] mt-0.5">
-                  <Crown className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-white">
-                    ₹50k+ Agency Commercial Playbook
-                  </h4>
-                  <p className="text-[11px] text-[#b8a984]">
-                    Client pitch decks, contract templates, and exact pricing scopes for AI consulting.
-                  </p>
-                </div>
+                <button
+                  onClick={() =>
+                    setUpsellModal({
+                      isOpen: true,
+                      price: 1999,
+                      title: "4-Week AI Mastery Cohort & 1:1 Implementation Mentorship",
+                    })
+                  }
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl text-xs sm:text-sm font-black text-[#0a0a0a] bg-gradient-to-r from-[#f5c542] via-[#ffd700] to-[#e6b800] hover:brightness-110 transition-all shadow-[0_0_25px_rgba(245,197,66,0.35)] flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider active:scale-95"
+                >
+                  <span>Upgrade to 4-Week Cohort for ₹1,999</span>
+                  <ArrowRight className="w-4 h-4 stroke-[3]" />
+                </button>
               </div>
             </div>
 
-            {/* Pricing & CTA */}
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 p-4.5 bg-[#141003] border-2 border-[#ffd700]/50 rounded-2xl">
-              <div>
-                <p className="text-xs text-[#b8a984]">Regular Mastermind Fee: <span className="line-through">₹24,999</span></p>
-                <p className="text-2xl font-black text-white font-mono flex items-baseline gap-2">
-                  <span className="text-[#ffd700]">₹4,999</span>
-                  <span className="text-xs text-[#0a0a0a] font-bold bg-[#ffd700] px-2.5 py-0.5 rounded-full">
-                    Save 80% (Limited Seats)
-                  </span>
-                </p>
+            {/* UPGRADE 2: ₹4,999 Elite Autonomous AI Agents Mastermind */}
+            <div className="relative rounded-2xl bg-gradient-to-b from-[#221a05] via-[#140f03] to-[#0a0802] border-2 border-[#ffd700]/80 p-6 sm:p-7 shadow-xl overflow-hidden">
+              <div className="absolute top-0 right-0 bg-gradient-to-l from-[#ffd700] via-[#f5c542] to-[#d4af37] text-[#0a0a0a] text-[10px] font-black uppercase tracking-wider py-1 px-4 rounded-bl-xl shadow-md flex items-center gap-1">
+                <Crown className="w-3 h-3" />
+                <span>TOP 1% ADVANCED TRACK</span>
               </div>
 
-              <button
-                onClick={() =>
-                  setUpsellModal({
-                    isOpen: true,
-                    price: 4999,
-                    title: "Elite Autonomous AI Agents & Enterprise LLM Engineering Mastermind",
-                  })
-                }
-                className="w-full sm:w-auto px-8 py-4 rounded-xl text-sm font-black text-[#0a0a0a] bg-gradient-to-r from-[#ffd700] via-[#f5c542] to-[#d4af37] hover:brightness-110 transition-all shadow-[0_0_40px_rgba(255,215,0,0.45)] flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider active:scale-95"
-              >
-                <span>Enroll in Advanced Course for ₹4,999</span>
-                <ArrowRight className="w-4 h-4 stroke-[3]" />
-              </button>
+              <div className="flex items-center gap-2 text-xs font-bold text-[#ffd700] mb-2 font-mono">
+                <Crown className="w-3.5 h-3.5" />
+                <span>OPTION 4B: ADVANCED ENTERPRISE COURSE</span>
+              </div>
+
+              <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight">
+                Autonomous AI Agents &amp; Multi-Agent Swarms Mastermind
+              </h3>
+              <p className="text-xs sm:text-sm text-[#d8cca8] mt-2">
+                Designed for engineers, technical founders, and builders. Master multi-agent swarms with LangGraph/AutoGen, high-scale vector RAG pipelines, and commercial agency client scopes.
+              </p>
+
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div className="flex items-center gap-2 text-xs text-[#e2d5b4]">
+                  <Check className="w-3.5 h-3.5 text-[#ffd700] flex-shrink-0" />
+                  <span>Multi-Agent Swarms (LangGraph, CrewAI, AutoGen)</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-[#e2d5b4]">
+                  <Check className="w-3.5 h-3.5 text-[#ffd700] flex-shrink-0" />
+                  <span>2 Private 60-Min Code Audits with Ankit Singh</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-[#e2d5b4]">
+                  <Check className="w-3.5 h-3.5 text-[#ffd700] flex-shrink-0" />
+                  <span>Production Vector RAG &amp; Custom Fine-Tuning</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-[#e2d5b4]">
+                  <Check className="w-3.5 h-3.5 text-[#ffd700] flex-shrink-0" />
+                  <span>₹50,000+ AI Agency Scope &amp; Client Contracts</span>
+                </div>
+              </div>
+
+              <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#2a2107]">
+                <div>
+                  <p className="text-[11px] text-[#b8a984]">
+                    Regular Fee: <span className="line-through">₹24,999</span>
+                  </p>
+                  <p className="text-2xl font-black text-white font-mono flex items-baseline gap-2">
+                    <span className="text-[#ffd700]">₹4,999</span>
+                    <span className="text-[10px] text-[#0a0a0a] font-bold bg-[#ffd700] px-2 py-0.5 rounded-full">
+                      SAVE 80% (LIMITED SEATS)
+                    </span>
+                  </p>
+                </div>
+
+                <button
+                  onClick={() =>
+                    setUpsellModal({
+                      isOpen: true,
+                      price: 4999,
+                      title: "Elite Autonomous AI Agents & Enterprise LLM Engineering Mastermind",
+                    })
+                  }
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl text-xs sm:text-sm font-black text-[#0a0a0a] bg-gradient-to-r from-[#ffd700] via-[#f5c542] to-[#d4af37] hover:brightness-110 transition-all shadow-[0_0_30px_rgba(255,215,0,0.4)] flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider active:scale-95"
+                >
+                  <span>Enroll in Advanced Course for ₹4,999</span>
+                  <ArrowRight className="w-4 h-4 stroke-[3]" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Back Link */}
-        <div className="text-center mt-8 pb-12">
+        <div className="text-center pb-12">
           <Link
             href="/"
             className="text-xs text-[#b8a984] hover:text-[#ffd700] transition-colors font-mono tracking-wider"
@@ -467,3 +456,4 @@ export default function ThankYouPage() {
     </Suspense>
   );
 }
+
