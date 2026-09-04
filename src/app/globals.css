@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+
+  /* ClickHouse Design Tokens from DESIGN.md */
+  --ch-canvas: #0a0a0a;
+  --ch-surface-soft: #121212;
+  --ch-surface-card: #1a1a1a;
+  --ch-surface-elevated: #242424;
+  --ch-hairline: #2a2a2a;
+  --ch-hairline-strong: #3a3a3a;
+  --ch-primary-yellow: #faff69;
+  --ch-primary-voltage: #faff69;
+  --ch-body: #cccccc;
+  --ch-muted: #888888;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: #ffffff;
+  font-family: var(--font-outfit), var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ClickHouse Design Utilities */
+.ch-card {
+  background-color: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+}
+
+.ch-card:hover {
+  border-color: #3a3a3a;
+}
+
+.ch-stat-number {
+  color: #faff69;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+}
+
+.btn-clickhouse-yellow {
+  background-color: #faff69;
+  color: #0a0a0a;
+  font-weight: 700;
+  border-radius: 8px;
+  box-shadow: 0 0 25px rgba(250, 255, 105, 0.45);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-clickhouse-yellow:hover {
+  background-color: #e6eb52;
+  box-shadow: 0 0 45px rgba(250, 255, 105, 0.75);
+  transform: translateY(-1px);
+}
+
+/* Yellow Glow Keyframe */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 25px rgba(250, 255, 105, 0.3), inset 0 0 15px rgba(250, 255, 105, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 45px rgba(250, 255, 105, 0.6), inset 0 0 25px rgba(250, 255, 105, 0.3);
+  }
+}
+
+.animate-glow-border {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+/* Cyber Grid Background */
+.cyber-grid {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
