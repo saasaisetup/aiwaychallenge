@@ -43,18 +43,25 @@ function ThankYouContent() {
 
   const webinarTitle =
     process.env.NEXT_PUBLIC_WEBINAR_TITLE ||
+    process.env.WEBINAR_TITLE ||
     "AIWAY CHALLENGE: 10x Your Productivity Just By Using AI Masterclass";
   const startTime =
-    process.env.NEXT_PUBLIC_WEBINAR_DATE || "2026-09-06T11:00:00+05:30";
+    process.env.NEXT_PUBLIC_WEBINAR_DATE ||
+    process.env.WEBINAR_DATE ||
+    "2026-09-06T11:00:00+05:30";
   const duration = parseInt(
-    process.env.NEXT_PUBLIC_WEBINAR_DURATION_MINS || "120",
+    process.env.NEXT_PUBLIC_WEBINAR_DURATION_MINS ||
+    process.env.WEBINAR_DURATION_MINS ||
+    "120",
     10
   );
   const meetUrl =
     process.env.NEXT_PUBLIC_WEBINAR_MEET_URL ||
+    process.env.WEBINAR_MEET_URL ||
     "https://meet.google.com/abc-defg-hij";
   const whatsappUrl =
     process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL ||
+    process.env.WHATSAPP_GROUP_URL ||
     "https://chat.whatsapp.com/invite";
 
   const event: CalendarEvent = {

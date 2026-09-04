@@ -9,8 +9,8 @@ export async function POST(req: Request) {
     const email = body.email || body.attendeeEmail || "";
     const phone = body.phone || body.attendeePhone || "";
 
-    const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "";
-    const keySecret = process.env.RAZORPAY_KEY_SECRET || "";
+    const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID || "";
+    const keySecret = process.env.RAZORPAY_KEY_SECRET || process.env.RAZORPAY_SECRET || "";
 
     if (!keyId || !keySecret) {
       return NextResponse.json(

@@ -23,15 +23,21 @@ export async function sendWebinarConfirmationEmail({
 }: EmailAttendeeParams) {
   const webinarTitle =
     process.env.NEXT_PUBLIC_WEBINAR_TITLE ||
+    process.env.WEBINAR_TITLE ||
     "10x Your Career Using AI: Masterclass for Students & Pros";
   const startTime =
-    process.env.NEXT_PUBLIC_WEBINAR_DATE || "2026-09-06T11:00:00+05:30";
+    process.env.NEXT_PUBLIC_WEBINAR_DATE ||
+    process.env.WEBINAR_DATE ||
+    "2026-09-06T11:00:00+05:30";
   const duration = parseInt(
-    process.env.NEXT_PUBLIC_WEBINAR_DURATION_MINS || "120",
+    process.env.NEXT_PUBLIC_WEBINAR_DURATION_MINS ||
+    process.env.WEBINAR_DURATION_MINS ||
+    "120",
     10
   );
   const meetUrl =
     process.env.NEXT_PUBLIC_WEBINAR_MEET_URL ||
+    process.env.WEBINAR_MEET_URL ||
     "https://meet.google.com/abc-defg-hij";
 
   const event: CalendarEvent = {
