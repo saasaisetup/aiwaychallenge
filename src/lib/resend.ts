@@ -51,6 +51,11 @@ export async function sendWebinarConfirmationEmail({
     process.env.WEBINAR_MEET_URL ||
     "https://meet.google.com/abc-defg-hij"
   ).trim();
+  const whatsappUrl = (
+    process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL ||
+    process.env.WHATSAPP_GROUP_URL ||
+    "https://chat.whatsapp.com/JNxvFNnkxOSHlqYPvSH4PG"
+  ).trim();
 
   const event: CalendarEvent = {
     title: webinarTitle,
@@ -111,18 +116,22 @@ export async function sendWebinarConfirmationEmail({
     </div>
 
     <div style="margin: 24px 0;">
-      <a href="${googleCalUrl}" class="btn btn-primary" target="_blank">📅 Add to Google Calendar</a>
-      <a href="${meetUrl}" class="btn btn-secondary" target="_blank">🔗 Join Google Meet Link</a>
+      <a href="${whatsappUrl}" class="btn" style="background: #25D366; color: #ffffff !important; display: block; text-align: center; margin-bottom: 12px; font-size: 15px; font-weight: 800; padding: 14px 20px; border-radius: 10px; text-decoration: none;" target="_blank">💬 Join VIP WhatsApp Community (Mandatory)</a>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <a href="${googleCalUrl}" class="btn btn-primary" target="_blank" style="flex: 1; min-width: 180px;">📅 Add to Calendar</a>
+        <a href="${meetUrl}" class="btn btn-secondary" target="_blank" style="flex: 1; min-width: 180px;">🔗 Meet Link</a>
+      </div>
     </div>
 
     <p style="font-size: 13px; color: #888888;">
-      💡 <em>Pro Tip: Click <strong>"Add to Google Calendar"</strong> right now so Google automatically reminds you 15 minutes before we go live!</em>
+      💡 <em>Pro Tip: Join the WhatsApp group right now — that's where we drop the 25+ AI power prompt sheets and live presentation slides 15 minutes before the call!</em>
     </p>
 
     <hr style="border: 0; border-top: 1px solid #2a2a2a; margin: 24px 0;" />
 
     <h3 style="color: #ffffff; font-size: 16px;">What to prepare before the masterclass:</h3>
     <ul style="color: #cccccc; font-size: 14px; padding-left: 20px;">
+      <li>Join the private WhatsApp community to receive instant updates.</li>
       <li>Have a notebook or Notion page open to save copy-paste prompts.</li>
       <li>Join 5 minutes early to test your audio & video connection.</li>
       <li>All bonus cheat sheets & directory will be unlocked live during the call!</li>
@@ -148,13 +157,15 @@ Event Details:
 - Time: ${formattedTime} IST (${duration} Mins)
 - Amount Paid: ₹${amountPaid} (Payment ID: ${paymentId})
 - Platform: Google Meet
+- Join VIP WhatsApp Community: ${whatsappUrl}
 - Join Google Meet Link: ${meetUrl}
 - Add to Google Calendar: ${googleCalUrl}
 
 What to prepare before the masterclass:
-1. Join 5 minutes early to test your audio & video connection.
-2. Have a notebook or Notion page open to save copy-paste prompts.
-3. All bonus cheat sheets & directory will be unlocked live during the call!
+1. Join the private WhatsApp community above to receive reminders & slides.
+2. Join 5 minutes early to test your audio & video connection.
+3. Have a notebook or Notion page open to save copy-paste prompts.
+4. All bonus cheat sheets & directory will be unlocked live during the call!
 
 Questions? Reply directly to this email.
 © 2026 AIWAY CHALLENGE • Mentored by Ankit Singh. All rights reserved.

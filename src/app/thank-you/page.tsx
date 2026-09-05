@@ -65,7 +65,7 @@ function ThankYouContent() {
   const whatsappUrl = (
     process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL ||
     process.env.WHATSAPP_GROUP_URL ||
-    "https://chat.whatsapp.com/invite"
+    "https://chat.whatsapp.com/JNxvFNnkxOSHlqYPvSH4PG"
   ).trim();
 
   const event: CalendarEvent = {
