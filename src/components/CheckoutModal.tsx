@@ -75,7 +75,7 @@ export default function CheckoutModal({
 
       // 3. Open Razorpay Checkout Modal
       const options = {
-        key: orderData.keyId || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_TXplt82epjd6CF",
+        key: orderData.keyId || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID || "",
         amount: orderData.amount,
         currency: orderData.currency || "INR",
         name: "AIWAY CHALLENGE",
