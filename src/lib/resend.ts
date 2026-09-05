@@ -2,7 +2,7 @@ import { Resend } from "resend";
 import { getGoogleCalendarUrl, getICSFileContent, CalendarEvent } from "./calendar";
 
 export function getResendClient() {
-  const resendApiKey = process.env.RESEND_API_KEY || "";
+  const resendApiKey = (process.env.RESEND_API_KEY || "").trim();
   return new Resend(resendApiKey);
 }
 
@@ -25,20 +25,32 @@ export async function sendWebinarConfirmationEmail({
     process.env.NEXT_PUBLIC_WEBINAR_TITLE ||
     process.env.WEBINAR_TITLE ||
     "10x Your Career Using AI: Masterclass for Students & Pros";
-  const startTime =
+  const rawStartTime = (
     process.env.NEXT_PUBLIC_WEBINAR_DATE ||
     process.env.WEBINAR_DATE ||
-    "2026-09-06T11:00:00+05:30";
+    "2026-09-06T11:00:00+05:30"
+  ).trim();
+
+  let dateObj: Date;
+  try {
+    const parsed = new Date(rawStartTime);
+    dateObj = isNaN(parsed.getTime()) ? new Date("2026-09-06T11:00:00+05:30") : parsed;
+  } catch {
+    dateObj = new Date("2026-09-06T11:00:00+05:30");
+  }
+  const startTime = dateObj.toISOString();
+
   const duration = parseInt(
-    process.env.NEXT_PUBLIC_WEBINAR_DURATION_MINS ||
+    (process.env.NEXT_PUBLIC_WEBINAR_DURATION_MINS ||
     process.env.WEBINAR_DURATION_MINS ||
-    "120",
+    "120").trim(),
     10
   );
-  const meetUrl =
+  const meetUrl = (
     process.env.NEXT_PUBLIC_WEBINAR_MEET_URL ||
     process.env.WEBINAR_MEET_URL ||
-    "https://meet.google.com/abc-defg-hij";
+    "https://meet.google.com/abc-defg-hij"
+  ).trim();
 
   const event: CalendarEvent = {
     title: webinarTitle,
@@ -51,13 +63,13 @@ export async function sendWebinarConfirmationEmail({
   const googleCalUrl = getGoogleCalendarUrl(event);
   const icsContent = getICSFileContent(event);
 
-  const formattedDate = new Date(startTime).toLocaleDateString("en-IN", {
+  const formattedDate = dateObj.toLocaleDateString("en-IN", {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
   });
-  const formattedTime = new Date(startTime).toLocaleTimeString("en-IN", {
+  const formattedTime = dateObj.toLocaleTimeString("en-IN", {
     hour: "2-digit",
     minute: "2-digit",
   });
