@@ -15,7 +15,7 @@ interface CheckoutModalProps {
 export default function CheckoutModal({
   isOpen,
   onClose,
-  price = 1,
+  price = 5,
   planTitle = "10x Your Productivity Just By Using AI Masterclass",
 }: CheckoutModalProps) {
   const [name, setName] = useState("");

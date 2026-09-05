@@ -51,7 +51,7 @@ export default function Home() {
               onClick={() => setIsCheckoutOpen(true)}
               className="w-full sm:w-auto py-3 px-7 rounded-lg text-sm font-bold bg-[#faff69] text-[#0a0a0a] hover:bg-[#e6eb52] transition-all flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(250,255,105,0.4)] flex-shrink-0 active:scale-95 cursor-pointer uppercase tracking-wider"
             >
-              <span>RESERVE SEAT • ₹1</span>
+              <span>RESERVE SEAT • ₹5</span>
               <ArrowRight className="w-4 h-4 stroke-[3]" />
             </button>
           </div>
@@ -85,7 +85,7 @@ export default function Home() {
           onClick={() => setIsCheckoutOpen(true)}
           className="relative z-10 w-full py-4.5 px-8 rounded-xl text-base sm:text-xl font-black bg-[#faff69] text-[#0a0a0a] hover:bg-[#f6fb4a] transition-all duration-300 cursor-pointer uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_0_55px_rgba(250,255,105,0.6),0_0_100px_rgba(250,255,105,0.25)] hover:shadow-[0_0_80px_rgba(250,255,105,0.9)] active:scale-95 ring-2 ring-[#faff69]/60"
         >
-          <span>REGISTER AT JUST ₹1</span>
+          <span>REGISTER AT JUST ₹5</span>
           <span className="line-through text-[#0a0a0a]/60 text-sm font-normal">₹1499/-</span>
           <ArrowRight className="w-5 h-5 stroke-[3] ml-1" />
         </button>
@@ -98,11 +98,11 @@ export default function Home() {
         </p>
       </div>
 
-      {/* Razorpay Payment Modal (₹1 Test with Resend Email Delivery & Calendar Sync) */}
+      {/* Razorpay Payment Modal (₹5 Test with Resend Email Delivery & Calendar Sync) */}
       <CheckoutModal
         isOpen={isCheckoutOpen}
         onClose={() => setIsCheckoutOpen(false)}
-        price={1}
+        price={5}
         planTitle="10x Your Productivity Just By Using AI Masterclass"
       />
 

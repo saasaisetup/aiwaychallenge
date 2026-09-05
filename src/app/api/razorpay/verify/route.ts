@@ -50,7 +50,7 @@ export async function POST(req: Request) {
         email: email,
         orderId: razorpay_order_id,
         paymentId: razorpay_payment_id,
-        amountPaid: amount || 99,
+        amountPaid: amount || 5,
       });
       emailSent = !!emailResult.success;
     }
