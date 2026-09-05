@@ -30,6 +30,13 @@ export const metadata: Metadata = {
   title: "AIWAY CHALLENGE: 10x Your Productivity Just By Using AI Masterclass",
   description:
     "The Ultimate Step-By-Step Framework To Automate 80% Of Your Daily Work, Learn 10x Faster & Supercharge Your Career. Mentored by Ankit Singh.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" },
+    ],
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
