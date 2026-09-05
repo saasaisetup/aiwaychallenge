@@ -171,7 +171,7 @@ export default function CyberHero({
             onClick={onOpenCheckout}
             className="w-full py-4 sm:py-4.5 px-6 rounded-xl text-base sm:text-lg font-black bg-[#faff69] text-[#0a0a0a] hover:bg-[#e6eb52] transition-all duration-200 cursor-pointer uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_0_35px_rgba(250,255,105,0.45)] hover:shadow-[0_0_55px_rgba(250,255,105,0.7)] active:scale-98"
           >
-            <span>REGISTER AT JUST ₹5</span>
+            <span>REGISTER AT JUST ₹199</span>
             <span className="line-through text-[#0a0a0a]/60 text-sm font-normal">₹1499/-</span>
             <ArrowRight className="w-5 h-5 stroke-[3] ml-1" />
           </button>

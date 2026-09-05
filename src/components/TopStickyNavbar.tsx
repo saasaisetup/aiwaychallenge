@@ -56,7 +56,7 @@ export default function TopStickyNavbar({ onOpenCheckout }: TopStickyNavbarProps
           <span>JOIN NOW</span>
           <span className="inline-flex items-center font-black">
             <IndianRupee className="w-3 h-3 sm:w-3.5 sm:h-3.5 stroke-[2.5]" />
-            <span>5</span>
+            <span>199</span>
           </span>
         </button>
       </div>
