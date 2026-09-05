@@ -14,7 +14,7 @@ export async function POST(req: Request) {
       amount,
     } = await req.json();
 
-    const key_secret = process.env.RAZORPAY_KEY_SECRET || process.env.RAZORPAY_SECRET || "";
+    const key_secret = (process.env.RAZORPAY_KEY_SECRET || process.env.RAZORPAY_SECRET || "").trim();
 
     let isSignatureValid = false;
 
