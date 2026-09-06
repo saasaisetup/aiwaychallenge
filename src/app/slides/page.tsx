@@ -535,7 +535,7 @@ export default function SlidesPage() {
                           </button>
                         )}
                       </div>
-                      <h3 className="text-base font-bold text-white mb-1">
+                      <h3 className="text-base font-bold font-editorial text-white mb-1">
                         {card.title}
                       </h3>
                       <p className="text-xs text-neutral-300 mb-3">

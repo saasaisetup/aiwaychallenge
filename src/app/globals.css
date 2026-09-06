@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -78,8 +79,10 @@ body {
 }
 
 /* Editorial Serif for Presentation Deck matching Crowded Framer Theme */
-.font-editorial {
-  font-family: var(--font-playfair), Georgia, Cambria, "Times New Roman", Times, serif;
+.font-editorial,
+.font-hedvig {
+  font-family: 'Hedvig Letters Serif', var(--font-playfair), Georgia, Cambria, "Times New Roman", Times, serif;
+  font-optical-sizing: auto;
 }
 
 @media print {
