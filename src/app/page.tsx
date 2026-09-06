@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import TopStickyNavbar from "@/components/TopStickyNavbar";
 import CyberHero from "@/components/CyberHero";
+import FlipCountdownTimer from "@/components/FlipCountdownTimer";
 import WhyCantYou from "@/components/WhyCantYou";
 import WhatYouCanBuild from "@/components/WhatYouCanBuild";
 import ComparisonSection from "@/components/ComparisonSection";
@@ -26,7 +27,10 @@ export default function Home() {
       {/* 1. Hero Section with Headline & Subtitle */}
       <CyberHero onOpenCheckout={() => setIsCheckoutOpen(true)} />
 
-      {/* 2. Process Timeline: "Why Can't You?" (Electric Yellow, No Green) */}
+      {/* 2. 3D Mechanical Split-Flap Flip Clock: Enrollment Closes In */}
+      <FlipCountdownTimer onOpenCheckout={() => setIsCheckoutOpen(true)} />
+
+      {/* 3. Process Timeline: "Why Can't You?" (Electric Yellow, No Green) */}
       <WhyCantYou />
 
       {/* 3. "After This Workshop, You'll Be Able To Build" (Websites, Slides, Apps, 10x Learning) */}

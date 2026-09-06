@@ -39,6 +39,7 @@ import {
   ChevronLeft,
 } from "lucide-react";
 import Link from "next/link";
+import FlipCountdownTimer from "@/components/FlipCountdownTimer";
 
 function LinkedinIcon({ className }: { className?: string }) {
   return (
@@ -87,6 +88,7 @@ export default function SlidesPage() {
   const [isGridOpen, setIsGridOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
+  const [isTimerModalOpen, setIsTimerModalOpen] = useState(false);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
   const totalSlides = SLIDES_DATA.length;
@@ -123,6 +125,9 @@ export default function SlidesPage() {
       } else if (e.key.toLowerCase() === "g") {
         e.preventDefault();
         setIsGridOpen((prev) => !prev);
+      } else if (e.key.toLowerCase() === "t") {
+        e.preventDefault();
+        setIsTimerModalOpen((prev) => !prev);
       } else if (e.key.toLowerCase() === "f") {
         e.preventDefault();
         toggleFullscreen();
@@ -132,6 +137,7 @@ export default function SlidesPage() {
       } else if (e.key === "Escape") {
         setIsGridOpen(false);
         setShowNotes(false);
+        setIsTimerModalOpen(false);
       }
     };
 
@@ -626,6 +632,21 @@ export default function SlidesPage() {
                   </div>
                 )}
 
+                {/* 3D Mechanical Split-Flap Flip Clock */}
+                <div className="bg-[#050b24]/90 backdrop-blur-md rounded-3xl p-5 border border-white/20 shadow-2xl">
+                  <FlipCountdownTimer
+                    title="Enrollment Closes In"
+                    subtitle="Workshop discount rate locks permanently when the clock hits zero"
+                    variant="card"
+                    size="sm"
+                    showCTA={false}
+                    initialDays={3}
+                    initialHours={18}
+                    initialMinutes={45}
+                    initialSeconds={4}
+                  />
+                </div>
+
                 {/* Pricing & CTA Card */}
                 {currentSlide.stats && (
                   <div className="bg-gradient-to-r from-white via-white to-blue-50 text-neutral-900 rounded-3xl p-6 sm:p-8 shadow-2xl border border-blue-200 flex flex-col sm:flex-row items-center justify-between gap-6">
@@ -661,6 +682,21 @@ export default function SlidesPage() {
             {/* LAYOUT: UPGRADE COMPARISON (Slide 25) */}
             {currentSlide.layout === "upgrade-compare" && currentSlide.cards && (
               <div className="max-w-4xl mx-auto w-full space-y-6">
+                {/* 3D Mechanical Split-Flap Flip Clock */}
+                <div className="bg-[#050b24]/90 backdrop-blur-md rounded-3xl p-5 border border-white/20 shadow-2xl">
+                  <FlipCountdownTimer
+                    title="Enrollment Closes In"
+                    subtitle="Lock In 80% Workshop Savings Before The Countdown Expires"
+                    variant="card"
+                    size="sm"
+                    showCTA={false}
+                    initialDays={3}
+                    initialHours={18}
+                    initialMinutes={45}
+                    initialSeconds={4}
+                  />
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {currentSlide.cards.map((card, i) => (
                     <div
@@ -863,6 +899,15 @@ export default function SlidesPage() {
               <span className="hidden sm:inline">Notes (N)</span>
             </button>
           )}
+
+          <button
+            onClick={() => setIsTimerModalOpen(true)}
+            className="bg-white/10 hover:bg-white/20 text-white backdrop-blur-md px-3.5 py-2 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer border border-white/20"
+            title="Press 'T' for 3D Flip Clock"
+          >
+            <Clock className="w-3.5 h-3.5 text-[#faff69] animate-pulse" />
+            <span className="hidden sm:inline">Flip Timer (T)</span>
+          </button>
         </div>
 
         {/* Center: Prev / Next Capsule Controls */}
@@ -985,6 +1030,61 @@ export default function SlidesPage() {
                     </button>
                   );
                 })}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Fullscreen 3D Mechanical Split-Flap Flip Clock Modal */}
+        {isTimerModalOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-50 bg-[#0a0a0c]/96 backdrop-blur-2xl flex flex-col items-center justify-center p-4 sm:p-6"
+          >
+            {/* Top Close Control */}
+            <div className="absolute top-6 right-6 flex items-center gap-3">
+              <span className="text-xs font-mono text-neutral-400 hidden sm:inline">Press ESC or T to close</span>
+              <button
+                onClick={() => setIsTimerModalOpen(false)}
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer border border-white/20 shadow-lg"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* 3D Flip Clock with Large Cards */}
+            <div className="w-full max-w-4xl mx-auto text-center">
+              <FlipCountdownTimer
+                title="Enrollment Closes In"
+                subtitle="Live Webinar Attendee Discount Closes When Counter Hits Zero"
+                variant="card"
+                size="lg"
+                showCTA={false}
+                initialDays={3}
+                initialHours={18}
+                initialMinutes={45}
+                initialSeconds={4}
+              />
+
+              {/* Fast Action Links for Live Webinar Attendees */}
+              <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link
+                  href="/thank-you"
+                  className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#faff69] text-[#0a0a0a] font-black text-sm hover:bg-[#e8ed4f] transition-all shadow-[0_0_35px_rgba(250,255,105,0.4)] hover:scale-105 active:scale-95 uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <span>Enroll in 4-Week Cohort • ₹1,999</span>
+                  <ArrowRight className="w-4 h-4 stroke-[3]" />
+                </Link>
+                <Link
+                  href="/thank-you"
+                  className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/30 font-bold text-sm transition-all shadow-xl hover:scale-105 active:scale-95 uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <span>Autonomous Agents Mastermind • ₹4,999</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
             </div>
           </motion.div>
