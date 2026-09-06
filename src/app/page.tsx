@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import TopStickyNavbar from "@/components/TopStickyNavbar";
 import CyberHero from "@/components/CyberHero";
 import WhyCantYou from "@/components/WhyCantYou";
@@ -109,7 +110,15 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-12 border-t border-[#2a2a2a] bg-[#0a0a0a] text-center text-xs text-[#888888]">
         <p>© 2026 AIWAY CHALLENGE • Mentored by Ankit Singh. All rights reserved.</p>
-        <p className="mt-1">
+        <div className="mt-3 flex items-center justify-center gap-4 text-xs font-mono">
+          <Link
+            href="/slides"
+            className="text-[#faff69] hover:underline flex items-center gap-1.5 bg-[#161616] px-4 py-2 rounded-full border border-[#2a2a2a] hover:border-[#faff69]/60 transition-all shadow-md"
+          >
+            <span>📺 Open Presentation Slides (27 Decks) →</span>
+          </Link>
+        </div>
+        <p className="mt-3">
           Secured by Razorpay 256-Bit SSL • Automated Delivery via Resend & Google Meet
         </p>
       </footer>
