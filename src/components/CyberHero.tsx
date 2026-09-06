@@ -120,8 +120,7 @@ export default function CyberHero({
         </motion.div>
 
         {/* ============================================================ */}
-        {/* 4. HEADLINE: HEDVIG LETTERS SERIF (MATCHES SCREENSHOT)       */}
-        {/* "Neural Methods Live AI Workshop"                            */}
+        {/* 4. HEADLINE: UNLOCK YOUR 10X POTENTIAL WITH AI               */}
         {/* ============================================================ */}
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
@@ -129,13 +128,30 @@ export default function CyberHero({
           transition={{ duration: 0.5, delay: 0.15 }}
           className="font-hedvig text-4xl sm:text-6xl md:text-7xl lg:text-[80px] font-normal text-white tracking-tight leading-[1.08] max-w-4xl mx-auto drop-shadow-sm"
         >
-          Neural Methods
+          Unlock Your{" "}
+          <span className="relative inline-block font-sans font-black italic text-[#faff69] px-1">
+            10X
+            {/* Yellow Brush Underline */}
+            <svg
+              className="absolute -bottom-2 left-0 w-full h-3.5 text-[#faff69] pointer-events-none overflow-visible"
+              viewBox="0 0 100 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 7C25 2 75 1 98 5C70 9 30 11 12 8"
+                stroke="currentColor"
+                strokeWidth="3.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </span>
           <br />
-          Live AI Workshop
+          <span className="text-[#faff69]">Potential</span> with AI
         </motion.h1>
 
         {/* ============================================================ */}
-        {/* 5. SUBTITLE (MATCHES USER SCREENSHOT COPY)                   */}
+        {/* 5. SUBTITLE: THE PRACTICAL MASTERCLASS                       */}
         {/* ============================================================ */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -143,7 +159,7 @@ export default function CyberHero({
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mt-4 sm:mt-5 text-blue-100/90 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-sans"
         >
-          A focused online workshop for people who want to actually use AI at work. Build your prompting system, your first workflow, and your own assistant in one live session.
+          The Practical AI Masterclass For Students &amp; Professionals. Build your prompting system, automate 80% of daily work, and build your own AI tools in one live session.
         </motion.p>
 
         {/* ============================================================ */}
@@ -200,7 +216,7 @@ export default function CyberHero({
               >
                 <img
                   src="/hero-video-poster.png"
-                  alt="Neural Methods Live AI Workshop Preview"
+                  alt="Unlock Your 10X Potential With AI Video Preview"
                   className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors flex items-center justify-center">
