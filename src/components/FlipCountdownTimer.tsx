@@ -42,10 +42,10 @@ function FlipCard({ current, previous, label, size = "md" }: FlipDigitProps) {
 
   const cardDimensions =
     size === "sm"
-      ? "w-16 h-22 sm:w-20 sm:h-28 md:w-24 md:h-32"
+      ? "w-16 h-[72px] sm:w-20 sm:h-[88px] md:w-24 md:h-[104px]"
       : size === "lg"
-      ? "w-24 h-32 sm:w-32 sm:h-44 md:w-40 md:h-54"
-      : "w-20 h-28 sm:w-28 sm:h-38 md:w-32 md:h-44 lg:w-36 lg:h-48";
+      ? "w-24 h-[106px] sm:w-32 sm:h-[140px] md:w-40 md:h-[172px]"
+      : "w-20 h-[88px] sm:w-28 sm:h-[122px] md:w-32 md:h-[140px] lg:w-36 lg:h-[156px]";
 
   const fontSizes =
     size === "sm"
@@ -58,14 +58,24 @@ function FlipCard({ current, previous, label, size = "md" }: FlipDigitProps) {
     <div className="flex flex-col items-center select-none">
       {/* 3D Card Stage with Perspective */}
       <div className={`relative ${cardDimensions} perspective-[1200px]`}>
+        {/* Left Outer Hinge Strip (Positioned on the outer flank, not inside the card face) */}
+        <div className="absolute -left-1.5 sm:-left-2 top-1/2 -translate-y-1/2 w-1.5 sm:w-2 h-4 sm:h-5 rounded-[2px] bg-[#2d303f] border border-white/15 z-40 shadow-[0_2px_4px_rgba(0,0,0,0.9)] flex items-center pointer-events-none">
+          <div className="w-full h-[1px] bg-black/75" />
+        </div>
+
+        {/* Right Outer Hinge Strip (Positioned on the outer flank, not inside the card face) */}
+        <div className="absolute -right-1.5 sm:-right-2 top-1/2 -translate-y-1/2 w-1.5 sm:w-2 h-4 sm:h-5 rounded-[2px] bg-[#2d303f] border border-white/15 z-40 shadow-[0_2px_4px_rgba(0,0,0,0.9)] flex items-center pointer-events-none">
+          <div className="w-full h-[1px] bg-black/75" />
+        </div>
+
         {/* Outer Card Shell with 3D Depth & Specular Top Hairline */}
-        <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-[#14151c] border border-[#272936] shadow-[0_16px_36px_rgba(0,0,0,0.9),0_2px_8px_rgba(0,0,0,0.6)]">
+        <div className="relative w-full h-full rounded-xl sm:rounded-2xl overflow-hidden bg-[#14151c] border border-[#272936] shadow-[0_16px_36px_rgba(0,0,0,0.9),0_2px_8px_rgba(0,0,0,0.6)]">
           
           {/* ============================================================ */}
           {/* LAYER 1: STATIC TOP FLAP (Shows Incoming/Current Value)      */}
           {/* Sits at top: 0, height: 50%, child has top: 0, height: 200% */}
           {/* ============================================================ */}
-          <div className="absolute top-0 left-0 right-0 h-1/2 overflow-hidden rounded-t-2xl sm:rounded-t-3xl bg-gradient-to-b from-[#21232d] to-[#181922] border-b border-[#0b0c10]">
+          <div className="absolute top-0 left-0 right-0 h-1/2 overflow-hidden rounded-t-xl sm:rounded-t-2xl bg-gradient-to-b from-[#21232d] to-[#181922] border-b border-[#0b0c10]">
             {/* Top specular hairline edge */}
             <div className="absolute inset-x-0 top-0 h-[1px] bg-white/[0.14] pointer-events-none" />
 
@@ -83,7 +93,7 @@ function FlipCard({ current, previous, label, size = "md" }: FlipDigitProps) {
           {/* Sits at bottom: 0, height: 50%, child has -top-full, h: 200% */}
           {/* Exactly identical coordinate space to Layer 1                */}
           {/* ============================================================ */}
-          <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden rounded-b-2xl sm:rounded-b-3xl bg-gradient-to-b from-[#14151c] to-[#0f1015] border-t border-[#0b0c10]">
+          <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden rounded-b-xl sm:rounded-b-2xl bg-gradient-to-b from-[#14151c] to-[#0f1015] border-t border-[#0b0c10]">
             {/* Soft inner shadow along top split */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent pointer-events-none" />
 
@@ -110,7 +120,7 @@ function FlipCard({ current, previous, label, size = "md" }: FlipDigitProps) {
                 backfaceVisibility: "hidden",
                 transformStyle: "preserve-3d",
               }}
-              className="absolute top-0 left-0 right-0 h-1/2 overflow-hidden rounded-t-2xl sm:rounded-t-3xl bg-gradient-to-b from-[#21232d] to-[#181922] border-b border-[#0b0c10] z-20"
+              className="absolute top-0 left-0 right-0 h-1/2 overflow-hidden rounded-t-xl sm:rounded-t-2xl bg-gradient-to-b from-[#21232d] to-[#181922] border-b border-[#0b0c10] z-20"
             >
               <div className="absolute inset-x-0 top-0 h-[1px] bg-white/[0.14] pointer-events-none" />
               <div className="absolute top-0 left-0 right-0 h-[200%] flex items-center justify-center">
@@ -144,7 +154,7 @@ function FlipCard({ current, previous, label, size = "md" }: FlipDigitProps) {
                 backfaceVisibility: "hidden",
                 transformStyle: "preserve-3d",
               }}
-              className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden rounded-b-2xl sm:rounded-b-3xl bg-gradient-to-b from-[#14151c] to-[#0f1015] border-t border-[#0b0c10] z-20"
+              className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden rounded-b-xl sm:rounded-b-2xl bg-gradient-to-b from-[#14151c] to-[#0f1015] border-t border-[#0b0c10] z-20"
             >
               <div className="absolute -top-full left-0 right-0 h-[200%] flex items-center justify-center">
                 <span
@@ -164,25 +174,15 @@ function FlipCard({ current, previous, label, size = "md" }: FlipDigitProps) {
           )}
 
           {/* ============================================================ */}
-          {/* MECHANICAL SPLIT & HARDWARE: Center Slit & Outer Notches    */}
+          {/* MECHANICAL SPLIT: Center Slit Dividing Upper & Lower Flaps   */}
+          {/* Note: strips have been moved to the outer sides as requested */}
           {/* ============================================================ */}
-          {/* Center Split Groove Slit */}
-          <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-[2.5px] bg-[#090a0d] z-30 shadow-[0_1px_2px_rgba(0,0,0,0.95)]" />
-
-          {/* Left Semi-Circular Cutout Notch (matching user screenshot) */}
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#0a0a0c] z-40 border border-black/50 shadow-inner" />
-          {/* Left Hinge Pivot Bracket */}
-          <div className="absolute left-0.5 top-1/2 -translate-y-1/2 w-1.5 h-3.5 rounded-[2px] bg-[#2d303e] border border-white/10 z-40 shadow-sm" />
-
-          {/* Right Semi-Circular Cutout Notch (matching user screenshot) */}
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-4 h-4 rounded-full bg-[#0a0a0c] z-40 border border-black/50 shadow-inner" />
-          {/* Right Hinge Pivot Bracket */}
-          <div className="absolute right-0.5 top-1/2 -translate-y-1/2 w-1.5 h-3.5 rounded-[2px] bg-[#2d303e] border border-white/10 z-40 shadow-sm" />
+          <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-[2px] bg-[#090a0d] z-30 shadow-[0_1px_2px_rgba(0,0,0,0.95)]" />
         </div>
       </div>
 
       {/* Label Underneath (DAYS, HOURS, MINUTES, SECONDS) */}
-      <span className="mt-3.5 sm:mt-4 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.22em] text-[#6b6f80] font-sans">
+      <span className="mt-3 sm:mt-3.5 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.22em] text-[#6b6f80] font-sans">
         {label}
       </span>
     </div>
