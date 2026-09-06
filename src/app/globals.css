@@ -76,3 +76,20 @@ body {
                     linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 32px 32px;
 }
+
+/* Editorial Serif for Presentation Deck matching Crowded Framer Theme */
+.font-editorial {
+  font-family: var(--font-playfair), Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .slide-container {
+    height: 100vh !important;
+    page-break-after: always;
+    break-after: page;
+  }
+}
+

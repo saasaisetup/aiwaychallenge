@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Plus_Jakarta_Sans, Manrope, Roboto_Mono } from "next/font/google";
+import { Outfit, Plus_Jakarta_Sans, Manrope, Roboto_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -26,6 +26,13 @@ const robotoMono = Roboto_Mono({
   weight: ["400", "500", "600", "700"],
 });
 
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+});
+
 export const metadata: Metadata = {
   title: "AIWAY CHALLENGE: 10x Your Productivity Just By Using AI Masterclass",
   description:
@@ -43,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${plusJakarta.variable} ${manrope.variable} ${robotoMono.variable} h-full antialiased`}
+      className={`${outfit.variable} ${plusJakarta.variable} ${manrope.variable} ${robotoMono.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-[#0a0a0a] text-white selection:bg-[#faff69] selection:text-black">
         {children}
