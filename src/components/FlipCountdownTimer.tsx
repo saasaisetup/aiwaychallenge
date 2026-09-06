@@ -2,28 +2,25 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Volume2, VolumeX, ShieldCheck, Zap } from "lucide-react";
+import { ArrowRight, Volume2, VolumeX, ShieldCheck } from "lucide-react";
 
 interface FlipDigitProps {
   current: string;
   previous: string;
   label: string;
   size?: "sm" | "md" | "lg";
-  isTickingUnit?: boolean;
 }
 
 /**
- * Ultra-Premium 3D Mechanical Split-Flap Single Card
- * Crafted with obsidian brushed carbon plates, ClickHouse Electric Voltage Yellow typography,
- * precision-milled center groove with cutout notches, and mechanical hinge rivets.
+ * 3D Mechanical Split-Flap Single Card
+ * Exactly matches the user's uploaded screenshot with:
+ * - Crisp, bold PURE WHITE numerals
+ * - Pixel-perfect horizontal equatorial split across the digits (top & bottom math identical)
+ * - Deep charcoal/slate matte card body (#181921 top, #13141b bottom)
+ * - Left and right semi-circular cutout notches with mechanical hinge tabs
+ * - Smooth 3D perspective folding animation
  */
-function FlipCard({
-  current,
-  previous,
-  label,
-  size = "md",
-  isTickingUnit = false,
-}: FlipDigitProps) {
+function FlipCard({ current, previous, label, size = "md" }: FlipDigitProps) {
   const [flipping, setFlipping] = useState(false);
   const [displayPrevious, setDisplayPrevious] = useState(previous);
   const [displayCurrent, setDisplayCurrent] = useState(current);
@@ -45,41 +42,36 @@ function FlipCard({
 
   const cardDimensions =
     size === "sm"
-      ? "w-16 h-22 sm:w-20 sm:h-28 md:w-22 md:h-30"
+      ? "w-16 h-22 sm:w-20 sm:h-28 md:w-24 md:h-32"
       : size === "lg"
-      ? "w-24 h-32 sm:w-32 sm:h-44 md:w-40 md:h-52"
-      : "w-20 h-28 sm:w-28 sm:h-36 md:w-32 md:h-42 lg:w-36 lg:h-46";
+      ? "w-24 h-32 sm:w-32 sm:h-44 md:w-40 md:h-54"
+      : "w-20 h-28 sm:w-28 sm:h-38 md:w-32 md:h-44 lg:w-36 lg:h-48";
 
   const fontSizes =
     size === "sm"
       ? "text-3xl sm:text-4xl md:text-5xl"
       : size === "lg"
       ? "text-5xl sm:text-7xl md:text-8xl"
-      : "text-4xl sm:text-5xl md:text-6xl lg:text-7xl";
+      : "text-4xl sm:text-6xl md:text-7xl";
 
   return (
-    <div className="flex flex-col items-center group">
-      {/* 3D Card Container with ClickHouse Voltage Aura */}
-      <div className={`relative ${cardDimensions} select-none perspective-[1200px]`}>
-        {/* Ambient Voltage Glow beneath card */}
-        <div className="absolute inset-0 rounded-2xl bg-[#faff69]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-        {/* Outer Obsidian Frame with Hairline Border */}
-        <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#0e0e11] border border-[#2a2a2a] group-hover:border-[#faff69]/50 shadow-[0_20px_45px_rgba(0,0,0,0.95),0_0_25px_rgba(250,255,105,0.06)] transition-all duration-300">
+    <div className="flex flex-col items-center select-none">
+      {/* 3D Card Stage with Perspective */}
+      <div className={`relative ${cardDimensions} perspective-[1200px]`}>
+        {/* Outer Card Shell with 3D Depth & Specular Top Hairline */}
+        <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-[#14151c] border border-[#272936] shadow-[0_16px_36px_rgba(0,0,0,0.9),0_2px_8px_rgba(0,0,0,0.6)]">
           
           {/* ============================================================ */}
           {/* LAYER 1: STATIC TOP FLAP (Shows Incoming/Current Value)      */}
+          {/* Sits at top: 0, height: 50%, child has top: 0, height: 200% */}
           {/* ============================================================ */}
-          <div className="absolute top-0 left-0 right-0 h-1/2 overflow-hidden bg-gradient-to-b from-[#1f1f25] via-[#16161c] to-[#111115] border-b border-[#060608]">
-            {/* Top Specular Hairline Highlight */}
-            <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-            
-            {/* Subtle Diagonal Sheen */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.04] via-transparent to-transparent pointer-events-none" />
+          <div className="absolute top-0 left-0 right-0 h-1/2 overflow-hidden rounded-t-2xl sm:rounded-t-3xl bg-gradient-to-b from-[#21232d] to-[#181922] border-b border-[#0b0c10]">
+            {/* Top specular hairline edge */}
+            <div className="absolute inset-x-0 top-0 h-[1px] bg-white/[0.14] pointer-events-none" />
 
             <div className="absolute top-0 left-0 right-0 h-[200%] flex items-center justify-center">
               <span
-                className={`${fontSizes} font-black font-sans tracking-tight text-[#faff69] drop-shadow-[0_0_16px_rgba(250,255,105,0.45)]`}
+                className={`${fontSizes} font-bold font-sans tracking-tight text-white leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]`}
               >
                 {displayCurrent}
               </span>
@@ -88,17 +80,20 @@ function FlipCard({
 
           {/* ============================================================ */}
           {/* LAYER 2: STATIC BOTTOM FLAP (Shows Outgoing/Previous Value)  */}
+          {/* Sits at bottom: 0, height: 50%, child has -top-full, h: 200% */}
+          {/* Exactly identical coordinate space to Layer 1                */}
           {/* ============================================================ */}
-          <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden bg-gradient-to-b from-[#0f0f13] to-[#08080a] border-t border-[#060608]">
-            <div className="absolute bottom-0 left-0 right-0 h-[200%] flex items-center justify-center">
+          <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden rounded-b-2xl sm:rounded-b-3xl bg-gradient-to-b from-[#14151c] to-[#0f1015] border-t border-[#0b0c10]">
+            {/* Soft inner shadow along top split */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent pointer-events-none" />
+
+            <div className="absolute -top-full left-0 right-0 h-[200%] flex items-center justify-center">
               <span
-                className={`${fontSizes} font-black font-sans tracking-tight text-[#faff69] drop-shadow-[0_0_16px_rgba(250,255,105,0.45)]`}
+                className={`${fontSizes} font-bold font-sans tracking-tight text-white leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]`}
               >
                 {displayPrevious}
               </span>
             </div>
-            {/* Deep Mechanical Inset Shadow */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
           </div>
 
           {/* ============================================================ */}
@@ -115,17 +110,17 @@ function FlipCard({
                 backfaceVisibility: "hidden",
                 transformStyle: "preserve-3d",
               }}
-              className="absolute top-0 left-0 right-0 h-1/2 overflow-hidden bg-gradient-to-b from-[#1f1f25] via-[#16161c] to-[#111115] border-b border-[#060608] z-20"
+              className="absolute top-0 left-0 right-0 h-1/2 overflow-hidden rounded-t-2xl sm:rounded-t-3xl bg-gradient-to-b from-[#21232d] to-[#181922] border-b border-[#0b0c10] z-20"
             >
-              <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <div className="absolute inset-x-0 top-0 h-[1px] bg-white/[0.14] pointer-events-none" />
               <div className="absolute top-0 left-0 right-0 h-[200%] flex items-center justify-center">
                 <span
-                  className={`${fontSizes} font-black font-sans tracking-tight text-[#faff69] drop-shadow-[0_0_16px_rgba(250,255,105,0.45)]`}
+                  className={`${fontSizes} font-bold font-sans tracking-tight text-white leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]`}
                 >
                   {displayPrevious}
                 </span>
               </div>
-              {/* Dynamic Cast Shadow darkening as flap rotates away from light */}
+              {/* Dynamic darkening shadow as top flap rotates down */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.75 }}
@@ -149,16 +144,16 @@ function FlipCard({
                 backfaceVisibility: "hidden",
                 transformStyle: "preserve-3d",
               }}
-              className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden bg-gradient-to-b from-[#0f0f13] to-[#08080a] border-t border-[#060608] z-20"
+              className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden rounded-b-2xl sm:rounded-b-3xl bg-gradient-to-b from-[#14151c] to-[#0f1015] border-t border-[#0b0c10] z-20"
             >
-              <div className="absolute bottom-0 left-0 right-0 h-[200%] flex items-center justify-center">
+              <div className="absolute -top-full left-0 right-0 h-[200%] flex items-center justify-center">
                 <span
-                  className={`${fontSizes} font-black font-sans tracking-tight text-[#faff69] drop-shadow-[0_0_16px_rgba(250,255,105,0.45)]`}
+                  className={`${fontSizes} font-bold font-sans tracking-tight text-white leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]`}
                 >
                   {displayCurrent}
                 </span>
               </div>
-              {/* Lightening Shadow clearing as flap lands */}
+              {/* Dynamic lightening shadow clearing as bottom flap lands */}
               <motion.div
                 initial={{ opacity: 0.7 }}
                 animate={{ opacity: 0 }}
@@ -169,36 +164,27 @@ function FlipCard({
           )}
 
           {/* ============================================================ */}
-          {/* PRECISION HARDWARE: Center Slit, Notches & Titanium Rivets  */}
+          {/* MECHANICAL SPLIT & HARDWARE: Center Slit & Outer Notches    */}
           {/* ============================================================ */}
-          {/* Center Split Milled Groove */}
-          <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-[3px] bg-[#050507] z-30 shadow-[0_2px_4px_rgba(0,0,0,0.95)] border-y border-black/80" />
+          {/* Center Split Groove Slit */}
+          <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-[2.5px] bg-[#090a0d] z-30 shadow-[0_1px_2px_rgba(0,0,0,0.95)]" />
 
-          {/* Left Semi-Circular Cutout Notch */}
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#0a0a0a] z-40 border border-[#2a2a2a] shadow-inner" />
-          {/* Left Titanium Hinge Bracket with Yellow Accent Dot */}
-          <div className="absolute left-0.5 top-1/2 -translate-y-1/2 w-1.5 h-3.5 rounded-[2px] bg-gradient-to-b from-[#3a3a44] via-[#24242c] to-[#181820] border border-[#faff69]/30 z-40 shadow-sm flex items-center justify-center">
-            <span className="w-0.5 h-0.5 rounded-full bg-[#faff69]" />
-          </div>
+          {/* Left Semi-Circular Cutout Notch (matching user screenshot) */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#0a0a0c] z-40 border border-black/50 shadow-inner" />
+          {/* Left Hinge Pivot Bracket */}
+          <div className="absolute left-0.5 top-1/2 -translate-y-1/2 w-1.5 h-3.5 rounded-[2px] bg-[#2d303e] border border-white/10 z-40 shadow-sm" />
 
-          {/* Right Semi-Circular Cutout Notch */}
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-4 h-4 rounded-full bg-[#0a0a0a] z-40 border border-[#2a2a2a] shadow-inner" />
-          {/* Right Titanium Hinge Bracket with Yellow Accent Dot */}
-          <div className="absolute right-0.5 top-1/2 -translate-y-1/2 w-1.5 h-3.5 rounded-[2px] bg-gradient-to-b from-[#3a3a44] via-[#24242c] to-[#181820] border border-[#faff69]/30 z-40 shadow-sm flex items-center justify-center">
-            <span className="w-0.5 h-0.5 rounded-full bg-[#faff69]" />
-          </div>
+          {/* Right Semi-Circular Cutout Notch (matching user screenshot) */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-4 h-4 rounded-full bg-[#0a0a0c] z-40 border border-black/50 shadow-inner" />
+          {/* Right Hinge Pivot Bracket */}
+          <div className="absolute right-0.5 top-1/2 -translate-y-1/2 w-1.5 h-3.5 rounded-[2px] bg-[#2d303e] border border-white/10 z-40 shadow-sm" />
         </div>
       </div>
 
-      {/* Luxury Monospace Label Underneath with Website Voltage Typography */}
-      <div className="mt-3.5 sm:mt-4 flex items-center gap-1.5">
-        {isTickingUnit && (
-          <span className="w-1.5 h-1.5 rounded-full bg-[#faff69] shadow-[0_0_6px_#faff69] animate-pulse" />
-        )}
-        <span className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-[0.24em] text-[#888888] group-hover:text-[#faff69] transition-colors">
-          {label}
-        </span>
-      </div>
+      {/* Label Underneath (DAYS, HOURS, MINUTES, SECONDS) */}
+      <span className="mt-3.5 sm:mt-4 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.22em] text-[#6b6f80] font-sans">
+        {label}
+      </span>
     </div>
   );
 }
@@ -220,7 +206,7 @@ interface FlipCountdownTimerProps {
 
 export default function FlipCountdownTimer({
   title = "Enrollment Closes In",
-  subtitle = "Workshop exclusive fee & bonus prompt libraries lock permanently when the countdown reaches zero.",
+  subtitle,
   onOpenCheckout,
   showCTA = true,
   ctaText = "CLAIM SEAT BEFORE EXPIRY • ₹199",
@@ -242,7 +228,7 @@ export default function FlipCountdownTimer({
   const [soundEnabled, setSoundEnabled] = useState(false);
   const audioContextRef = useRef<AudioContext | null>(null);
 
-  // High-fidelity dual-click synthesizer for authentic Solari split-flap click
+  // Subtle mechanical split-flap click synthesizer
   const playMechanicalClick = () => {
     if (!soundEnabled) return;
     try {
@@ -257,31 +243,31 @@ export default function FlipCountdownTimer({
 
       const now = ctx.currentTime;
 
-      // 1. Primary Flap Release Tick
+      // Primary Flap Release Tick
       const osc1 = ctx.createOscillator();
       const gain1 = ctx.createGain();
-      osc1.type = "triangle";
-      osc1.frequency.setValueAtTime(1400, now);
-      osc1.frequency.exponentialRampToValueAtTime(320, now + 0.025);
-      gain1.gain.setValueAtTime(0.09, now);
-      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
+      osc1.type = "sine";
+      osc1.frequency.setValueAtTime(900, now);
+      osc1.frequency.exponentialRampToValueAtTime(140, now + 0.035);
+      gain1.gain.setValueAtTime(0.08, now);
+      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
       osc1.connect(gain1);
       gain1.connect(ctx.destination);
       osc1.start(now);
-      osc1.stop(now + 0.028);
+      osc1.stop(now + 0.04);
 
-      // 2. Secondary Flap Land Slap
+      // Flap Impact Slap
       const osc2 = ctx.createOscillator();
       const gain2 = ctx.createGain();
-      osc2.type = "sine";
-      osc2.frequency.setValueAtTime(480, now + 0.03);
-      osc2.frequency.exponentialRampToValueAtTime(80, now + 0.06);
-      gain2.gain.setValueAtTime(0.07, now + 0.03);
-      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+      osc2.type = "triangle";
+      osc2.frequency.setValueAtTime(320, now + 0.025);
+      osc2.frequency.exponentialRampToValueAtTime(60, now + 0.055);
+      gain2.gain.setValueAtTime(0.06, now + 0.025);
+      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.055);
       osc2.connect(gain2);
       gain2.connect(ctx.destination);
-      osc2.start(now + 0.03);
-      osc2.stop(now + 0.065);
+      osc2.start(now + 0.025);
+      osc2.stop(now + 0.06);
     } catch {
       // Audio policy safe fallback
     }
@@ -338,43 +324,28 @@ export default function FlipCountdownTimer({
       ? "bg-[#070e2b]/95 backdrop-blur-xl border border-white/20 rounded-3xl p-6 sm:p-8 shadow-2xl"
       : variant === "card"
       ? "bg-transparent py-4"
-      : "bg-[#0a0a0a] py-14 sm:py-20 border-y border-[#2a2a2a]";
+      : "bg-[#0a0a0c] py-12 sm:py-16";
 
   return (
     <section className={`relative overflow-hidden ${containerBg} text-white`}>
-      {/* ClickHouse Electric Yellow Ambient Voltage Bloom (Matches Website Colors) */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-gradient-to-b from-[#faff69]/15 via-[#faff69]/5 to-transparent blur-[160px] pointer-events-none rounded-full" />
-
-      {/* Cyber Grid Texture Overlay */}
-      <div className="absolute inset-0 cyber-grid pointer-events-none opacity-40" />
+      {/* Subtle Dark Vignette & Soft Ambient Depth */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[300px] bg-white/[0.02] blur-[120px] pointer-events-none rounded-full" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Top Urgency Header in Website Brand Colors */}
+        {/* Headline Exactly as Uploaded Screenshot */}
         <div
           className={`text-center max-w-2xl mx-auto ${
             variant === "slides" || variant === "card" ? "mb-6 sm:mb-8" : "mb-8 sm:mb-12"
           }`}
         >
-          {/* Pulsing Electric Yellow Live Status Pill */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161616] border border-[#faff69]/30 text-[11px] font-mono font-bold tracking-widest uppercase text-[#faff69] mb-4 shadow-[0_0_20px_rgba(250,255,105,0.15)]">
-            <span className="w-2 h-2 rounded-full bg-[#faff69] animate-ping inline-block shadow-[0_0_8px_#faff69]" />
-            <Zap className="w-3.5 h-3.5 text-[#faff69]" />
-            <span>LIMITED REGISTRATION WINDOW • 87% SEATS CLAIMED</span>
-          </div>
-
-          {/* Exact Headline in ClickHouse Luxury Typography */}
           <h2
-            className={`${
-              variant === "slides"
-                ? "text-2xl sm:text-4xl md:text-5xl font-editorial"
-                : "text-3xl sm:text-5xl md:text-6xl font-extrabold font-sans"
-            } text-white tracking-tight leading-tight`}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold font-sans text-white tracking-tight leading-tight"
           >
-            Enrollment <span className="text-[#faff69] italic">Closes In</span>
+            {title}
           </h2>
 
           {subtitle && (
-            <p className="mt-3 text-xs sm:text-sm md:text-base text-[#cccccc] font-normal leading-relaxed max-w-lg mx-auto">
+            <p className="mt-2.5 text-xs sm:text-sm text-[#888c9e] font-normal leading-relaxed max-w-lg mx-auto">
               {subtitle}
             </p>
           )}
@@ -383,7 +354,7 @@ export default function FlipCountdownTimer({
         {/* ============================================================ */}
         {/* THE 4 FLIP CLOCK CARDS (DAYS, HOURS, MINUTES, SECONDS)       */}
         {/* ============================================================ */}
-        <div className="flex items-center justify-center gap-2.5 sm:gap-4 md:gap-6 lg:gap-8">
+        <div className="flex items-center justify-center gap-3 sm:gap-5 md:gap-6 lg:gap-7">
           <FlipCard
             current={currentFormatted.days}
             previous={previousFormatted.days}
@@ -410,45 +381,44 @@ export default function FlipCountdownTimer({
             previous={previousFormatted.seconds}
             label="SECONDS"
             size={cardSize}
-            isTickingUnit={true}
           />
         </div>
 
         {/* Sound Effect Toggle & Action Section */}
-        <div className="mt-10 sm:mt-12 flex flex-col items-center justify-center gap-4">
+        <div className="mt-8 sm:mt-10 flex flex-col items-center justify-center gap-4">
           <div className="flex items-center gap-4">
             <button
               onClick={() => setSoundEnabled((prev) => !prev)}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#161616] hover:bg-[#202020] border border-[#2a2a2a] hover:border-[#faff69]/40 text-[11px] font-mono text-[#888888] hover:text-[#faff69] transition-all cursor-pointer shadow-sm"
-              title="Toggle authentic mechanical split-flap audio click"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#14151c] hover:bg-[#1c1d27] border border-[#272936] text-[11px] font-mono text-[#787c8e] hover:text-white transition-all cursor-pointer shadow-sm"
+              title="Toggle authentic mechanical split-flap click sound"
             >
               {soundEnabled ? (
                 <>
-                  <Volume2 className="w-3.5 h-3.5 text-[#faff69]" />
-                  <span className="text-white font-semibold">Mechanical Audio: ON</span>
+                  <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-white font-medium">Mechanical Audio: ON</span>
                 </>
               ) : (
                 <>
-                  <VolumeX className="w-3.5 h-3.5 text-[#666666]" />
+                  <VolumeX className="w-3.5 h-3.5 text-[#5e6170]" />
                   <span>Mechanical Audio: Muted</span>
                 </>
               )}
             </button>
           </div>
 
-          {/* High Converting Action CTA in Website Electric Voltage Yellow */}
+          {/* High Converting Action CTA */}
           {showCTA && onOpenCheckout && (
             <div className="w-full max-w-md mx-auto mt-2">
               <button
                 onClick={onOpenCheckout}
-                className="w-full py-4.5 px-6 rounded-xl text-base sm:text-lg font-black bg-[#faff69] text-[#0a0a0a] hover:bg-[#f6fb4a] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_0_45px_rgba(250,255,105,0.55),0_0_90px_rgba(250,255,105,0.2)] hover:shadow-[0_0_65px_rgba(250,255,105,0.8)] ring-2 ring-[#faff69]/50"
+                className="w-full py-4 sm:py-4.5 px-6 rounded-xl text-base sm:text-lg font-black bg-[#faff69] text-[#0a0a0a] hover:bg-[#f6fb4a] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_0_40px_rgba(250,255,105,0.45)] hover:shadow-[0_0_60px_rgba(250,255,105,0.7)] ring-2 ring-[#faff69]/40"
               >
                 <span>{ctaText}</span>
                 <ArrowRight className="w-5 h-5 stroke-[3]" />
               </button>
 
-              <div className="mt-3 flex items-center justify-center gap-3 text-xs text-[#888888] font-mono">
-                <span className="line-through text-[#666666]">{priceText}</span>
+              <div className="mt-3 flex items-center justify-center gap-3 text-xs text-[#7d8296] font-mono">
+                <span className="line-through text-[#66687a]">{priceText}</span>
                 <span>•</span>
                 <span className="flex items-center gap-1 text-[#faff69]">
                   <ShieldCheck className="w-3.5 h-3.5" />
