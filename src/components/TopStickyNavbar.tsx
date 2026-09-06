@@ -10,9 +10,9 @@ interface TopStickyNavbarProps {
 export default function TopStickyNavbar({ onOpenCheckout }: TopStickyNavbarProps) {
   const [timeLeft, setTimeLeft] = useState({
     days: 2,
-    hours: 3,
-    minutes: 27,
-    seconds: 13,
+    hours: 21,
+    minutes: 18,
+    seconds: 22,
   });
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function TopStickyNavbar({ onOpenCheckout }: TopStickyNavbarProps
       const target = new Date(webinarDate).getTime();
       let diff = target - Date.now();
       if (diff <= 0 || isNaN(diff)) {
-        diff = (2 * 86400 + 3 * 3600 + 27 * 60 + 13) * 1000;
+        diff = (2 * 86400 + 21 * 3600 + 18 * 60 + 22) * 1000;
       }
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);

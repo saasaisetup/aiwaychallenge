@@ -198,6 +198,7 @@ interface FlipCountdownTimerProps {
   priceText?: string;
   variant?: "fullscreen" | "section" | "card" | "slides";
   size?: "sm" | "md" | "lg";
+  targetDate?: string;
   initialDays?: number;
   initialHours?: number;
   initialMinutes?: number;
@@ -213,18 +214,30 @@ export default function FlipCountdownTimer({
   priceText = "Regular Fee ₹1,499",
   variant = "section",
   size,
-  initialDays = 3,
-  initialHours = 18,
-  initialMinutes = 45,
-  initialSeconds = 4,
+  targetDate,
+  initialDays = 2,
+  initialHours = 21,
+  initialMinutes = 18,
+  initialSeconds = 22,
 }: FlipCountdownTimerProps) {
   const cardSize = size || (variant === "slides" || variant === "card" ? "sm" : "md");
 
-  // Real seconds calculation starting from exact screenshot numbers: 03d 18h 45m 04s
-  const totalStartingSeconds =
-    initialDays * 86400 + initialHours * 3600 + initialMinutes * 60 + initialSeconds;
+  const getTargetTimestamp = () => {
+    const webinarDate =
+      targetDate || process.env.NEXT_PUBLIC_WEBINAR_DATE || "2026-09-09T11:00:00+05:30";
+    return new Date(webinarDate).getTime();
+  };
 
-  const [secondsRemaining, setSecondsRemaining] = useState(totalStartingSeconds);
+  const calculateTotalSeconds = () => {
+    const target = getTargetTimestamp();
+    const diff = Math.floor((target - Date.now()) / 1000);
+    if (diff > 0 && !isNaN(diff)) return diff;
+    return initialDays * 86400 + initialHours * 3600 + initialMinutes * 60 + initialSeconds;
+  };
+
+  const [secondsRemaining, setSecondsRemaining] = useState(
+    initialDays * 86400 + initialHours * 3600 + initialMinutes * 60 + initialSeconds
+  );
   const [soundEnabled, setSoundEnabled] = useState(false);
   const audioContextRef = useRef<AudioContext | null>(null);
 
@@ -274,11 +287,15 @@ export default function FlipCountdownTimer({
   };
 
   useEffect(() => {
+    // Immediately synchronize to live target date on mount
+    setSecondsRemaining(calculateTotalSeconds());
+
     const interval = setInterval(() => {
       setSecondsRemaining((prev) => {
-        if (prev <= 0) return 0;
+        const live = calculateTotalSeconds();
+        if (live <= 0) return 0;
         playMechanicalClick();
-        return prev - 1;
+        return live;
       });
     }, 1000);
 
