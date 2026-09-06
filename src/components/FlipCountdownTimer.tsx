@@ -288,14 +288,6 @@ export default function FlipCountdownTimer({
     prevTimeRef.current = { days, hours, minutes, seconds };
   }, [days, hours, minutes, seconds]);
 
-  if (!mounted) {
-    return (
-      <div className="py-12 flex justify-center items-center">
-        <div className="w-8 h-8 rounded-full border-2 border-white/20 border-t-white animate-spin" />
-      </div>
-    );
-  }
-
   const containerBg =
     variant === "slides"
       ? "bg-[#070e2b]/90 backdrop-blur-xl border border-white/20 rounded-3xl p-6 sm:p-8 shadow-2xl"
