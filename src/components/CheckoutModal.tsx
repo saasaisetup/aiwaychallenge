@@ -191,7 +191,7 @@ export default function CheckoutModal({
                   <div className="mt-2.5 flex items-center gap-4 text-xs text-[#888888]">
                     <div className="flex items-center gap-1.5">
                       <Calendar className="w-3.5 h-3.5 text-[#faff69]" />
-                      <span>Sun, 6th Sept</span>
+                      <span>Wed, 9th Sept</span>
                     </div>
                     <div className="flex items-center gap-1.5">
                       <Clock className="w-3.5 h-3.5 text-[#faff69]" />

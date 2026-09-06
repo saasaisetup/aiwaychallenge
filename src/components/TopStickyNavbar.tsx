@@ -17,7 +17,7 @@ export default function TopStickyNavbar({ onOpenCheckout }: TopStickyNavbarProps
 
   useEffect(() => {
     const calculateTime = () => {
-      const webinarDate = process.env.NEXT_PUBLIC_WEBINAR_DATE || "2026-09-06T11:00:00+05:30";
+      const webinarDate = process.env.NEXT_PUBLIC_WEBINAR_DATE || "2026-09-09T11:00:00+05:30";
       const target = new Date(webinarDate).getTime();
       let diff = target - Date.now();
       if (diff <= 0 || isNaN(diff)) {

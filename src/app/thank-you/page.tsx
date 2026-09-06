@@ -49,7 +49,7 @@ function ThankYouContent() {
   const startTime = (
     process.env.NEXT_PUBLIC_WEBINAR_DATE ||
     process.env.WEBINAR_DATE ||
-    "2026-09-06T11:00:00+05:30"
+    "2026-09-09T11:00:00+05:30"
   ).trim();
   const duration = parseInt(
     (process.env.NEXT_PUBLIC_WEBINAR_DURATION_MINS ||
@@ -156,7 +156,7 @@ function ThankYouContent() {
             </span>
             <span className="hidden sm:inline text-[#f5c542]/40">•</span>
             <span className="text-[#b8a984]">
-              Live Date: <strong className="text-white">Sunday, 6th Sept • 11:00 AM IST</strong>
+              Live Date: <strong className="text-white">Wednesday, 9th Sept • 11:00 AM IST</strong>
             </span>
           </div>
         </div>

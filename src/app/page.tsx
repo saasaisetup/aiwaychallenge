@@ -20,8 +20,8 @@ export default function Home() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#faff69] selection:text-black">
-      {/* Sticky Top Bar: Countdown Timer on Left, Join Now 99 on Right */}
+    <main id="home" className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#faff69] selection:text-black scroll-smooth">
+      {/* Sticky Top Bar: Countdown Timer on Left, Join Now 199 on Right */}
       <TopStickyNavbar onOpenCheckout={() => setIsCheckoutOpen(true)} />
 
       {/* 1. Hero Section with Headline & Subtitle */}
@@ -31,13 +31,17 @@ export default function Home() {
       <FlipCountdownTimer onOpenCheckout={() => setIsCheckoutOpen(true)} />
 
       {/* 3. Process Timeline: "Why Can't You?" (Electric Yellow, No Green) */}
-      <WhyCantYou />
+      <div id="why">
+        <WhyCantYou />
+      </div>
 
       {/* 3. "After This Workshop, You'll Be Able To Build" (Websites, Slides, Apps, 10x Learning) */}
-      <WhatYouCanBuild />
+      <div id="learn">
+        <WhatYouCanBuild />
+      </div>
 
       {/* Strategic Mid-Page CTA #1 with Electric Yellow Button (No Green) */}
-      <section className="bg-[#0a0a0a] py-8 border-b border-[#2a2a2a]">
+      <section id="pricing" className="bg-[#0a0a0a] py-8 border-b border-[#2a2a2a]">
         <div className="max-w-4xl mx-auto px-4">
           <div className="bg-[#1a1a1a] border border-[#2a2a2a] hover:border-[#faff69]/50 transition-colors rounded-xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-center sm:text-left">
@@ -49,7 +53,7 @@ export default function Home() {
                 Want To Build Websites, Slides & Micro-Apps Like This?
               </h3>
               <p className="text-xs sm:text-sm text-[#cccccc] mt-0.5">
-                Learn the complete context stacking framework live with Ankit Singh this Sunday.
+                Learn the complete context stacking framework live with Ankit Singh this Wednesday, 9th September.
               </p>
             </div>
             <button
@@ -67,7 +71,9 @@ export default function Home() {
       <ComparisonSection />
 
       {/* 5. "What You'll Learn Inside This Workshop" Curriculum Breakdown */}
-      <LearnInsideWorkshop />
+      <div id="curriculum">
+        <LearnInsideWorkshop />
+      </div>
 
       {/* 6. "From Overwhelmed To A 10x AI Power Performer" + 3 Secrets */}
       <BeforeAfterSection />
@@ -95,7 +101,7 @@ export default function Home() {
           <ArrowRight className="w-5 h-5 stroke-[3] ml-1" />
         </button>
         <p className="relative z-10 text-xs text-[#aaaaaa] mt-4 font-mono flex items-center justify-center gap-2">
-          <span>Sunday, 6th September</span>
+          <span>Wednesday, 9th September</span>
           <span className="w-1 h-1 rounded-full bg-[#faff69] shadow-[0_0_6px_#faff69]" />
           <span>11:00 AM IST</span>
           <span className="w-1 h-1 rounded-full bg-[#faff69] shadow-[0_0_6px_#faff69]" />

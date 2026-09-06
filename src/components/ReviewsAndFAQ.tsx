@@ -161,14 +161,14 @@ export default function ReviewsAndFAQ({ onOpenCheckout }: ReviewsAndFAQProps) {
                   Ready To 10x Your Productivity With AI?
                 </h3>
                 <p className="text-xs sm:text-sm text-[#cccccc] mt-1">
-                  Sunday, 6th September • 11:00 AM IST • Live hands-on masterclass with Ankit Singh
+                  Wednesday, 9th September • 11:00 AM IST • Live hands-on masterclass with Ankit Singh
                 </p>
               </div>
               <button
                 onClick={onOpenCheckout}
                 className="w-full sm:w-auto py-3 px-7 rounded-lg text-sm font-bold bg-[#faff69] text-[#0a0a0a] hover:bg-[#e6eb52] transition-all cursor-pointer uppercase tracking-wider flex items-center justify-center gap-2 flex-shrink-0 active:scale-95 shadow-[0_0_25px_rgba(250,255,105,0.45)]"
               >
-                <span>REGISTER FOR ₹99</span>
+                <span>REGISTER FOR ₹199</span>
                 <ArrowRight className="w-4 h-4 stroke-[3]" />
               </button>
             </motion.div>
