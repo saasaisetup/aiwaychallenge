@@ -75,12 +75,16 @@ function FlipCard({ current, previous, label, size = "md" }: FlipDigitProps) {
           {/* LAYER 1: STATIC TOP FLAP (Shows Incoming/Current Value)      */}
           {/* Sits at top: 0, height: 50%, child has top: 0, height: 200% */}
           {/* ============================================================ */}
-          <div className="absolute top-0 left-0 right-0 h-1/2 overflow-hidden rounded-t-xl sm:rounded-t-2xl bg-gradient-to-b from-[#21232d] to-[#181922] border-b border-[#0b0c10]">
+          <div className="absolute top-0 left-0 right-0 h-1/2 overflow-hidden rounded-t-xl sm:rounded-t-2xl bg-gradient-to-b from-[#21232d] to-[#181922]">
             {/* Top specular hairline edge */}
             <div className="absolute inset-x-0 top-0 h-[1px] bg-white/[0.14] pointer-events-none" />
 
-            <div className="absolute top-0 left-0 right-0 h-[200%] flex items-center justify-center">
+            <div
+              style={{ height: "200%" }}
+              className="absolute top-0 left-0 right-0 flex items-center justify-center pointer-events-none"
+            >
               <span
+                style={{ transform: "translateY(-0.06em)" }}
                 className={`${fontSizes} font-bold font-sans tracking-tight text-white leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]`}
               >
                 {displayCurrent}
@@ -89,19 +93,20 @@ function FlipCard({ current, previous, label, size = "md" }: FlipDigitProps) {
           </div>
 
           {/* ============================================================ */}
-          {/* LAYER 2: STATIC BOTTOM FLAP (Shows Outgoing/Previous Value)  */}
-          {/* Sits at bottom: 0, height: 50%, child has -top-full, h: 200% */}
+          {/* LAYER 2: STATIC BOTTOM FLAP (Shows Value matching top)       */}
+          {/* Sits at bottom: 0, height: 50%, child top: -100%, h: 200%    */}
           {/* Exactly identical coordinate space to Layer 1                */}
           {/* ============================================================ */}
-          <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden rounded-b-xl sm:rounded-b-2xl bg-gradient-to-b from-[#14151c] to-[#0f1015] border-t border-[#0b0c10]">
-            {/* Soft inner shadow along top split */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent pointer-events-none" />
-
-            <div className="absolute -top-full left-0 right-0 h-[200%] flex items-center justify-center">
+          <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden rounded-b-xl sm:rounded-b-2xl bg-gradient-to-b from-[#14151c] to-[#0f1015]">
+            <div
+              style={{ top: "-100%", height: "200%" }}
+              className="absolute left-0 right-0 flex items-center justify-center pointer-events-none"
+            >
               <span
+                style={{ transform: "translateY(-0.06em)" }}
                 className={`${fontSizes} font-bold font-sans tracking-tight text-white leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]`}
               >
-                {displayPrevious}
+                {flipping ? displayPrevious : displayCurrent}
               </span>
             </div>
           </div>
@@ -120,11 +125,15 @@ function FlipCard({ current, previous, label, size = "md" }: FlipDigitProps) {
                 backfaceVisibility: "hidden",
                 transformStyle: "preserve-3d",
               }}
-              className="absolute top-0 left-0 right-0 h-1/2 overflow-hidden rounded-t-xl sm:rounded-t-2xl bg-gradient-to-b from-[#21232d] to-[#181922] border-b border-[#0b0c10] z-20"
+              className="absolute top-0 left-0 right-0 h-1/2 overflow-hidden rounded-t-xl sm:rounded-t-2xl bg-gradient-to-b from-[#21232d] to-[#181922] z-20"
             >
               <div className="absolute inset-x-0 top-0 h-[1px] bg-white/[0.14] pointer-events-none" />
-              <div className="absolute top-0 left-0 right-0 h-[200%] flex items-center justify-center">
+              <div
+                style={{ height: "200%" }}
+                className="absolute top-0 left-0 right-0 flex items-center justify-center pointer-events-none"
+              >
                 <span
+                  style={{ transform: "translateY(-0.06em)" }}
                   className={`${fontSizes} font-bold font-sans tracking-tight text-white leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]`}
                 >
                   {displayPrevious}
@@ -154,10 +163,14 @@ function FlipCard({ current, previous, label, size = "md" }: FlipDigitProps) {
                 backfaceVisibility: "hidden",
                 transformStyle: "preserve-3d",
               }}
-              className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden rounded-b-xl sm:rounded-b-2xl bg-gradient-to-b from-[#14151c] to-[#0f1015] border-t border-[#0b0c10] z-20"
+              className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden rounded-b-xl sm:rounded-b-2xl bg-gradient-to-b from-[#14151c] to-[#0f1015] z-20"
             >
-              <div className="absolute -top-full left-0 right-0 h-[200%] flex items-center justify-center">
+              <div
+                style={{ top: "-100%", height: "200%" }}
+                className="absolute left-0 right-0 flex items-center justify-center pointer-events-none"
+              >
                 <span
+                  style={{ transform: "translateY(-0.06em)" }}
                   className={`${fontSizes} font-bold font-sans tracking-tight text-white leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]`}
                 >
                   {displayCurrent}
@@ -175,9 +188,8 @@ function FlipCard({ current, previous, label, size = "md" }: FlipDigitProps) {
 
           {/* ============================================================ */}
           {/* MECHANICAL SPLIT: Center Slit Dividing Upper & Lower Flaps   */}
-          {/* Note: strips have been moved to the outer sides as requested */}
           {/* ============================================================ */}
-          <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-[2px] bg-[#090a0d] z-30 shadow-[0_1px_2px_rgba(0,0,0,0.95)]" />
+          <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-[1.5px] bg-[#08090c] z-30 shadow-[0_1px_2px_rgba(0,0,0,0.95)] pointer-events-none" />
         </div>
       </div>
 
